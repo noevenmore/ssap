@@ -49,8 +49,8 @@
     @for ($i = 0; $i < 7; $i++)
     <div class="form-group">
             <label>{{$daylist[$i]}}:</label>
-            <input placeholder="Время работы с..." class="form-control" type="number" name="from_d{{$i}}" value="{{isset($from_d[$i])?$from_d[$i]:''}}">
-            <input placeholder="Время работы до..." class="form-control" type="number" name="to_d{{$i}}" value="{{isset($to_d[$i])?$to_d[$i]:''}}">
+            <input placeholder="Время работы с..." class="form-control" type="time" name="from_d{{$i}}" value="{{isset($from_d[$i])?$from_d[$i]:''}}">
+            <input placeholder="Время работы до..." class="form-control" type="time" name="to_d{{$i}}" value="{{isset($to_d[$i])?$to_d[$i]:''}}">
     </div>
     @endfor
 

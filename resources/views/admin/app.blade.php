@@ -61,6 +61,9 @@
                     <div class="col-lg-3 col-md-4 col-12">
                         <p class="my-0"><a href="{{route('admin_index')}}">Главная страница</a></p>
 
+                        <p class="mb-0 mt-3"><a href="{{route('admin_event_add')}}">Добавить событие</a></p>
+                        <p class="my-0"><a href="{{route('admin_event_show')}}">Просмотр событий</a></p>
+
                         <p class="mb-0 mt-3"><a href="{{route('admin_hotel_add')}}">Добавить отель</a></p>
                         <p class="my-0"><a href="{{route('admin_hotel_show')}}">Просмотр отелей</a></p>
                     </div>

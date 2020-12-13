@@ -5,11 +5,18 @@ use Illuminate\Support\Facades\Route;
 // ADMIN PANEL
 Route::prefix('admin')->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin_index');
+
     Route::get('/hotels', [App\Http\Controllers\HotelController::class, 'hotel_show'])->name('admin_hotel_show');
     Route::get('/hotel/edit/{id}', [App\Http\Controllers\HotelController::class, 'hotel_edit'])->name('admin_hotel_edit');
     Route::post('/hotel/edit', [App\Http\Controllers\HotelController::class, 'hotel_edit_post'])->name('admin_hotel_edit_post');
     Route::get('/hotel/new', [App\Http\Controllers\HotelController::class, 'hotel_add'])->name('admin_hotel_add');
     Route::post('/hotel/new', [App\Http\Controllers\HotelController::class, 'hotel_add_post'])->name('admin_hotel_add_post');
+
+    Route::get('/events', [App\Http\Controllers\EventController::class, 'event_show'])->name('admin_event_show');
+    Route::get('/event/edit/{id}', [App\Http\Controllers\EventController::class, 'event_edit'])->name('admin_event_edit');
+    Route::post('/event/edit', [App\Http\Controllers\EventController::class, 'event_edit_post'])->name('admin_event_edit_post');
+    Route::get('/event/new', [App\Http\Controllers\EventController::class, 'event_add'])->name('admin_event_add');
+    Route::post('/event/new', [App\Http\Controllers\EventController::class, 'event_add_post'])->name('admin_event_add_post');
 });
 
 Route::get('/', [App\Http\Controllers\SiteController::class, 'index'])->name('index');

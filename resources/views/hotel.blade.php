@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-12">
             <div class="breadcrumb">
-                <a href="#" class="main">Головна </a>/<a href="#" class="haschild">Каталог отелей</a>/<a href="#" class="haschild">Название отеля</a>
+                <a href="/" class="main">Головна </a>/<a href="{{route('hotel_list')}}" class="haschild mr-3">Каталог отелей</a>/<a href="{{route('hotel',$data->id)}}" class="haschild">{{$data->name}}</a>
             </div>
         </div>
     </div>
