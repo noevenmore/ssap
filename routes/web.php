@@ -17,7 +17,18 @@ Route::prefix('admin')->group(function () {
     Route::post('/event/edit', [App\Http\Controllers\EventController::class, 'event_edit_post'])->name('admin_event_edit_post');
     Route::get('/event/new', [App\Http\Controllers\EventController::class, 'event_add'])->name('admin_event_add');
     Route::post('/event/new', [App\Http\Controllers\EventController::class, 'event_add_post'])->name('admin_event_add_post');
+
+    Route::post('/loadimage',[App\Http\Controllers\PhotoController::class,'load_image'])->name('admin_loadimage');
+    Route::post('/deleteimage',[App\Http\Controllers\PhotoController::class,'delete_image'])->name('admin_deleteimage');
+    Route::get('/addtogallery',[App\Http\Controllers\PhotoController::class,'add_to_gallery'])->name('admin_add_to_gallery');
+    Route::post('/addtogallery',[App\Http\Controllers\PhotoController::class,'add_to_gallery_post'])->name('admin_add_to_gallery_post');
+    Route::get('/photos',[App\Http\Controllers\PhotoController::class,'show_gallery'])->name('admin_show_gallery');
+    Route::get('/photo/{id}',[App\Http\Controllers\PhotoController::class,'show_photo'])->name('admin_show_photo');
+    Route::post('/photo_edit',[App\Http\Controllers\PhotoController::class,'photo_edit'])->name('admin_photo_edit');
 });
+
+Route::get('/en',[App\Http\Controllers\LanguageController::class,'set_english'])->name('set_lang_en');
+Route::get('/ua',[App\Http\Controllers\LanguageController::class,'set_ukrainian'])->name('set_lang_ua');
 
 Route::get('/', [App\Http\Controllers\SiteController::class, 'index'])->name('index');
 Route::get('/search', [App\Http\Controllers\SiteController::class, 'search'])->name('search');
