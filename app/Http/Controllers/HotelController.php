@@ -20,6 +20,9 @@ class HotelController extends Controller
         $hotel->name=$request->input('name','no_name');
         if (!$hotel->name) $hotel->name = 'no_name';
 
+        $hotel->type=$request->input('type','unknown');
+        if (!$hotel->type) $hotel->type = 'unknown';
+
         $hotel->text=$request->input('text','');
         if (!$hotel->text) $hotel->text = '';
 
@@ -107,5 +110,10 @@ class HotelController extends Controller
         $data = Hotel::paginate(10);
 
         return view('admin.hotel_show',compact('data'));
+    }
+
+    public function hotel_delete(Request $request)
+    {
+        //
     }
 }

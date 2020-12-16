@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin_index');
 
+    Route::get('/var_ditor', [App\Http\Controllers\SystemController::class, 'var_editor_show'])->name('admin_var_editor_show');
+    Route::post('/var_ditor', [App\Http\Controllers\SystemController::class, 'var_editor_update_post'])->name('admin_var_editor_update_post');
+
     Route::get('/hotels', [App\Http\Controllers\HotelController::class, 'hotel_show'])->name('admin_hotel_show');
     Route::get('/hotel/edit/{id}', [App\Http\Controllers\HotelController::class, 'hotel_edit'])->name('admin_hotel_edit');
     Route::post('/hotel/edit', [App\Http\Controllers\HotelController::class, 'hotel_edit_post'])->name('admin_hotel_edit_post');
@@ -17,6 +20,13 @@ Route::prefix('admin')->group(function () {
     Route::post('/event/edit', [App\Http\Controllers\EventController::class, 'event_edit_post'])->name('admin_event_edit_post');
     Route::get('/event/new', [App\Http\Controllers\EventController::class, 'event_add'])->name('admin_event_add');
     Route::post('/event/new', [App\Http\Controllers\EventController::class, 'event_add_post'])->name('admin_event_add_post');
+
+    Route::get('/mpt', [App\Http\Controllers\MainPageTitleController::class, 'event_show'])->name('admin_mp_title_show');
+    Route::get('/mpt/edit/{id}', [App\Http\Controllers\MainPageTitleController::class, 'event_edit'])->name('admin_mp_title_edit');
+    Route::post('/mpt/edit', [App\Http\Controllers\MainPageTitleController::class, 'event_edit_post'])->name('admin_mp_title_edit_post');
+    Route::get('/mpt/new', [App\Http\Controllers\MainPageTitleController::class, 'event_add'])->name('admin_mp_title_add');
+    Route::post('/mpt/new', [App\Http\Controllers\MainPageTitleController::class, 'event_add_post'])->name('admin_mp_title_add_post');
+    Route::post('/mpt/delete', [App\Http\Controllers\MainPageTitleController::class, 'event_delete_post'])->name('admin_mp_title_delete_post');
 
     Route::post('/loadimage',[App\Http\Controllers\PhotoController::class,'load_image'])->name('admin_loadimage');
     Route::post('/deleteimage',[App\Http\Controllers\PhotoController::class,'delete_image'])->name('admin_deleteimage');
@@ -35,8 +45,8 @@ Route::get('/search', [App\Http\Controllers\SiteController::class, 'search'])->n
 Route::get('/photogallery', [App\Http\Controllers\SiteController::class, 'photogallery'])->name('photogallery');
 Route::get('/excursion', [App\Http\Controllers\SiteController::class, 'excursion'])->name('excursion');
 Route::get('/excursion_list', [App\Http\Controllers\SiteController::class, 'excursion_list'])->name('excursion_list');
-Route::get('/hotel/{id}', [App\Http\Controllers\SiteController::class, 'hotel'])->name('hotel');
-Route::get('/hotel_list', [App\Http\Controllers\SiteController::class, 'hotel_list'])->name('hotel_list');
+Route::get('/node/{id}', [App\Http\Controllers\SiteController::class, 'hotel'])->name('node');
+Route::get('/node_list', [App\Http\Controllers\SiteController::class, 'hotel_list'])->name('node_list');
 Route::get('/publishes', [App\Http\Controllers\SiteController::class, 'publishes'])->name('publishes');
 
 Auth::routes();

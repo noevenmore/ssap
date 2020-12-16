@@ -8,6 +8,7 @@
 
     "Filters":"Фільтри",
     "Free":"Безкоштовно",
+    "Review":"Переглянути",
 
     "Explore":"Досліджуй",
     "Museums":"Музеї",
@@ -18,6 +19,7 @@
     "Monuments":"Памятники",
     "Temples":"Храми",
     
+    "Tourist attractions":"Туристичні атракції",
     "Tourist routes":"Туристичні маршрути",
     "Book excursions":"Замовлення екскурсій",
     "Entertainment":"Розваги",
@@ -49,5 +51,18 @@
     "Summer Kropyvnytskyi":"Літній Кропивницький",
     "Winter Kropyvnytskyi":"Зимовий Кропивницький",
     "Autumn Kropyvnytskyi":"Осінній Кропивницький",
-    "Contact us":"Звязатись з нами"
+    "Contact us":"Звязатись з нами",
+
+    "Catalog of hotels":"Каталог готелів",
+    "Catalog of museums":"Каталог музеїв",
+    "Catalog of gallerys":"Каталог галерей",
+    "Catalog of parks":"Каталог парків",
+    "Catalog of historical shafts":"Каталог історичних валів",
+    "Catalog of architecture":"Каталог шедеврів архітектури",
+    "Catalog of monuments":"Каталог пам'ятників",
+    "Catalog of temples":"Каталог храмів",
+    "Catalog of cafes":"Каталог кафе",
+    "Catalog of restaurants":"Каталог ресторанів",
+    "Catalog of coffes shops":"Каталог кав'ярень",
+    "Catalog of entertainments":"Каталог розваг"
 }

@@ -2,6 +2,28 @@
     @csrf
 
     <input type="text" name="id" value="{{isset($id)?$id:0}}" hidden>
+    
+    <div class="form-group">
+        <label><strong>Тип:</strong></label>
+        <select class="form-control" name="type">
+            <option value="unknown">Не выбрано</option>
+            <option value="hotel" {{isset($type)&&$type=='hotel'?'selected':''}}>Отель</option>
+
+            <option value="museum" {{isset($type)&&$type=='museum'?'selected':''}}>Музей</option>
+            <option value="gallery" {{isset($type)&&$type=='gallery'?'selected':''}}>Галлерея</option>
+            <option value="park" {{isset($type)&&$type=='park'?'selected':''}}>Парк</option>
+            <option value="history_val" {{isset($type)&&$type=='history_val'?'selected':''}}>Исторический вал</option>
+            <option value="architecture" {{isset($type)&&$type=='architecture'?'selected':''}}>Шедевр архитектуры</option>
+            <option value="monument" {{isset($type)&&$type=='monument'?'selected':''}}>Памятник</option>
+            <option value="temple" {{isset($type)&&$type=='temple'?'selected':''}}>Храм</option>
+
+            <option value="cafe" {{isset($type)&&$type=='cafe'?'selected':''}}>Кафе</option>
+            <option value="restaurant" {{isset($type)&&$type=='restaurant'?'selected':''}}>Ресторан</option>
+            <option value="coffe" {{isset($type)&&$type=='coffe'?'selected':''}}>Кофейня</option>
+
+            <option value="entertainment" {{isset($type)&&$type=='entertainment'?'selected':''}}>Развлечения</option>
+        </select>
+    </div>
 
     <div class="form-group">
         <label><strong>Название: (украинский)</strong></label>

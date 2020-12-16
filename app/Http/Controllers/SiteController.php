@@ -6,12 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\Photo;
 use App\Models\Event;
+use App\Models\MainPageTitle;
 use App\Http\Controllers\MyFunction;
+
+use function PHPSTORM_META\type;
 
 class SiteController extends Controller
 {
     public function index(Request $request)
     {
+        $main_page_titles = MainPageTitle::get();
+
         $all_events = Event::where(['is_show'=>true,'is_main'=>true])->with('images')->get();
         $events_festivals = Event::where(['is_show'=>true,'is_main'=>true,'type'=>'festival'])->with('images')->get();
         $events_show = Event::where(['is_show'=>true,'is_main'=>true,'type'=>'show'])->with('images')->get();
@@ -20,7 +25,7 @@ class SiteController extends Controller
         $events_conference = Event::where(['is_show'=>true,'is_main'=>true,'type'=>'conference'])->with('images')->get();
         $events_other = Event::where(['is_show'=>true,'is_main'=>true,'type'=>'other'])->with('images')->get();
 
-        return view('welcome',compact('all_events','events_festivals','events_show','events_concert','events_sport','events_conference','events_other'));
+        return view('welcome',compact('main_page_titles','all_events','events_festivals','events_show','events_concert','events_sport','events_conference','events_other'));
     }
 
     public function search(Request $request)
@@ -68,9 +73,10 @@ class SiteController extends Controller
 
     public function hotel_list(Request $request)
     {
-        $data = Hotel::paginate(12);
+        $type = $request->input('type');
+        $data = Hotel::where('type',$type)->with('image')->paginate(12);
 
-        return view('hotels_catalog',compact('data'));
+        return view('hotels_catalog',compact('type','data'));
     }
 
     public function publishes(Request $request)

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use App\Models\System;
 
 class MyFunction extends Controller
 {
@@ -89,5 +91,49 @@ class MyFunction extends Controller
     public static function get_phones_from_line($data)
     {
         return explode(";",$data);
+    }
+
+    
+    public static function get_temperature()
+    {
+        return view('test');
+
+        /*
+        $response = Http::withHeaders(['X-Gismeteo-Token'=>'56b30cb255.3443075'])->get('https://api.gismeteo.net/v2/search/cities/?query=Кропивницкий');
+
+        return $response;
+        */
+    }
+
+    public static function get_money_rate()
+    {
+        $response = Http::get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
+
+        $data = json_decode($response);
+
+        foreach ($data as $d)
+        {
+            if ($d->cc == 'USD')
+            {
+                $usd = System::where('name','usd')->first();
+
+                if ($usd)
+                {
+                    $usd->value=round($d->rate,1);
+                    $usd->save();
+                }
+            }
+            
+            if ($d->cc == 'EUR')
+            {
+                $eur = System::where('name','eur')->first();
+
+                if ($eur)
+                {
+                    $eur->value=round($d->rate,1);
+                    $eur->save();
+                }
+            }
+        }
     }
 }

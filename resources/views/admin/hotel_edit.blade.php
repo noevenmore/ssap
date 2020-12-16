@@ -1,10 +1,11 @@
 @extends('admin.app')
-@section('title','Добавление отеля')
+@section('title','Редактирование заведения')
 
 @section('content')
     @include('admin._hotel',
     [
         'link'=>route('admin_hotel_edit_post'),
+        'type'=>$data->type,
         'id'=>$data->id,
         'name'=>$data->name,
         'text'=>$data->text,

@@ -2,6 +2,7 @@
 @section('title','Просмотр фотографий')
 
 @section('content')
+@include('admin._modal_delete')
 
 <div class="row">
     <div class="col-12 text-center">
@@ -41,7 +42,13 @@
         <label class="form-check-label">Изображение является главным</label>
     </div>
 
-    <button class="btn btn-primary mt-2" type="submit">Сохранить</button>
+    <div class="text-center">
+        <button class="btn btn-primary mt-2" type="submit">Сохранить</button>
+    </div>
 </form>
+
+<div class="text-center mt-5">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalDeleteWindow" data-filename="{{$photo->src}}" data-url="{{route('admin_deleteimage')}}" data-route="{{route('admin_show_gallery')}}">Удалить</button>
+</div>
 
 @endsection
