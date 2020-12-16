@@ -11,6 +11,9 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/flatpickr.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/flatpickr.js') }}" defer></script>
+    
     <script src="{{ asset('js/summernote-bs4.min.js') }}" defer></script>
     <link href="{{ asset('css/summernote-bs4.min.css') }}" rel="stylesheet">
 </head>
@@ -59,16 +62,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-12">
-                        <p class="my-0"><a href="{{route('admin_index')}}">Главная страница</a></p>
-
-                        <p class="mb-0 mt-3"><a href="{{route('admin_event_add')}}">Добавить событие</a></p>
-                        <p class="my-0"><a href="{{route('admin_event_show')}}">Просмотр событий</a></p>
-
-                        <p class="mb-0 mt-3"><a href="{{route('admin_hotel_add')}}">Добавить отель</a></p>
-                        <p class="my-0"><a href="{{route('admin_hotel_show')}}">Просмотр отелей</a></p>
+                        @include('admin._menu')
                     </div>
 
-                    <div class="col-lg-9 col-md-8 col-12">
+                    <div class="col-lg-9 col-md-8 col-12 border rounded p-2">
                         @yield('content')
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MyFunction;
 use App\Models\Hotel;
@@ -25,6 +26,15 @@ class HotelController extends Controller
         $hotel->addr=$request->input('addr','');
         if (!$hotel->addr) $hotel->addr = '';
 
+        $hotel->name_eng=$request->input('name_eng','no_name');
+        if (!$hotel->name_eng) $hotel->name_eng = 'no_name';
+
+        $hotel->text_eng=$request->input('text_eng','');
+        if (!$hotel->text_eng) $hotel->text_eng = '';
+
+        $hotel->addr_eng=$request->input('addr_eng','');
+        if (!$hotel->addr_eng) $hotel->addr_eng = '';
+
         $hotel->blink=$request->input('blink','');
         if (!$hotel->blink) $hotel->blink = '';
 
@@ -34,10 +44,20 @@ class HotelController extends Controller
         $hotel->work_times=MyFunction::work_days_from_request($request);
 
         $hotel->save();
+
+        PhotoController::publish_images($hotel->id,'hotel');
     }
 
     public function hotel_add(Request $request)
     {
+        $photos=Photo::where(['type'=>'hotel','data_id'=>0])->get();
+
+        $images_list = '';
+        foreach ($photos as $ph)
+        {
+            $images_list = $images_list . $ph->src . ';';
+        }
+
         return view('admin.hotel_add');
     }
 
@@ -56,7 +76,15 @@ class HotelController extends Controller
 
         if (!$data) return redirect(404);
 
-        return view('admin.hotel_edit',['data'=>$data]);
+        $photos=Photo::where(['type'=>'hotel','data_id'=>$id])->get();
+
+        $images_list = '';
+        foreach ($photos as $ph)
+        {
+            $images_list = $images_list . $ph->src . ';';
+        }
+
+        return view('admin.hotel_edit',compact('data','images_list'));
     }
 
     public function hotel_edit_post(Request $request)

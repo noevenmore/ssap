@@ -16,18 +16,58 @@
     </div>
 
     <div class="form-group">
-        <label><strong>Название:</strong></label>
+        <label><strong>Название: (украинский)</strong></label>
         <input type="text" name="name" class="form-control" placeholder="Введите название..." value="{{isset($name)?$name:''}}">
     </div>
 
     <div class="form-group">
-        <label><strong>Адресс:</strong></label>
+        <label><strong>Название: (английский)</strong></label>
+        <input type="text" name="name_eng" class="form-control" placeholder="Введите название..." value="{{isset($name_eng)?$name_eng:''}}">
+    </div>
+
+    <div class="form-group">
+        <label><strong>Цена: (0 - бесплатно)</strong></label>
+        <input type="number" name="price" class="form-control" placeholder="Введите цену..." value="{{isset($price)?$price:'0'}}">
+    </div>
+
+    <div class="form-group">
+        <label><strong>Длительность в минутах: (0 - не показывать)</strong></label>
+        <input type="number" name="length" class="form-control" placeholder="Введите длительность..." value="{{isset($length)?$length:'0'}}">
+    </div>
+
+    <div class="form-group">
+        <label><strong>Время начала события:</strong></label>
+        <input onchange="$('#no_time_check').prop('checked',false );" type="text" name="start" id="datatimepicker" class="form-control" placeholder="Выберите дату начала..."  value="{{isset($start)?$start:''}}">
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" id="no_time_check" name="no_time" {{(isset($start) && $start==null)?'checked':''}}>
+        <label class="form-check-label">Не показывать время начала</label>
+    </div>
+
+    <div class="form-group">
+        <label><strong>Адресс: (украинский)</strong></label>
         <input type="text" name="addr" class="form-control" placeholder="Введите адресс..." value="{{isset($addr)?$addr:''}}">
     </div>
 
     <div class="form-group">
-        <label><strong>Полное описание:</strong></label>
+        <label><strong>Адресс: (английский)</strong></label>
+        <input type="text" name="addr_eng" class="form-control" placeholder="Введите адресс..." value="{{isset($addr_eng)?$addr_eng:''}}">
+    </div>
+
+    <div class="form-group">
+        <label><strong>Изображения:</strong></label>
+        <div id="imageloader" data-list="{{isset($images_list)?$images_list:""}}" data-type="event"></div>
+    </div>
+
+    <div class="form-group">
+        <label><strong>Полное описание: (украинский)</strong></label>
         <textarea name="text" id="summernote">{{isset($text)?$text:''}}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label><strong>Полное описание: (английский)</strong></label>
+        <textarea name="text_eng" id="summernote_eng">{{isset($text_eng)?$text_eng:''}}</textarea>
     </div>
 
     <div class="form-check">

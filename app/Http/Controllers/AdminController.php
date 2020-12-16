@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Photo;
 
 class AdminController extends Controller
 {
@@ -14,6 +16,8 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
+
+
         return view('admin.main');
     }
 }

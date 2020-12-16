@@ -1,39 +1,95 @@
-<header class="header header--page">
-    <div class="header_wrapper">
+<header class="header {{isset($is_main_page)?'':'header--page'}} showoverflow">
+    <div class="header_wrapper showoverflow z1000">
         <div class="header_logo">
             <a href="/"><img src="/img/logo.png" alt=""></a>
         </div>
-        <nav class="header_nav nav">
+        <nav class="header_nav nav showoverflow">
             <ul class="header_menu">
-                <li class="header_menu-item">
-                    <a href="{{route('excursion_list')}}" class="header_menu-link">Досліджуй</a>
-                </li>
-                <li class="header_menu-item">
-                    <a href="#" class="header_menu-link">Де поїсти</a>
-                </li>
-                <li class="header_menu-item">
-                    <a href="{{route('hotel_list')}}" class="header_menu-link">Готелі</a>
-                </li>
-                <li class="header_menu-item">
-                    <a href="#" class="header_menu-link">Події</a>
-                </li>
-                <li class="header_menu-item">
-                    <a href="#" class="header_menu-link">Про місто</a>
-                </li>
-                <li class="header_menu-item">
-                    <a href="#" class="header_menu-link">Актуально</a>
-                </li>
-                <li class="header_menu-item">
-                    <a href="{{route('photogallery')}}" class="header_menu-link">Фотогалерея</a>
-                </li>
+                <div class="m-auto dropdown">
+                    <a href="{{route('excursion_list')}}" class="dropbtn">{{__('Explore')}}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('Museums')}}</a>
+                        <a href="#">{{__('Galleries')}}</a>
+                        <a href="#">{{__('Parks')}}</a>
+                        <a href="#">{{__('Historical shafts')}}</a>
+                        <a href="#">{{__('Masterpieces of architecture')}}</a>
+                        <a href="#">{{__('Monuments')}}</a>
+                        <a href="#">{{__('Temples')}}</a>
+                        <a href="#">{{__('Tourist routes')}}</a>
+                        <a href="#">{{__('Book excursions')}}</a>
+                        <a href="#">{{__('Entertainment')}}</a>
+                    </div>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('index')}}" class="dropbtn">{{__('Where to eat')}}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('Cafe')}}</a>
+                        <a href="#">{{__('Restaurants')}}</a>
+                        <a href="#">{{__('Coffee shops')}}</a>
+                        <a href="#">{{__('Food delivery')}}</a>
+                    </div>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('hotel_list')}}" class="dropbtn">{{__('Hotels')}}</a>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('index')}}" class="dropbtn">{{__('Events')}}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('Festivals')}}</a>
+                        <a href="#">{{__('Exhibitions')}}</a>
+                        <a href="#">{{__('Concerts')}}</a>
+                        <a href="#">{{__('Sport')}}</a>
+                        <a href="#">{{__('Conferences')}}</a>
+                        <a href="#">{{__('Other')}}</a>
+                    </div>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('index')}}" class="dropbtn">{{__('About the city')}}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('History of the city and interesting facts')}}</a>
+                        <a href="#">{{__('Legends of our city')}}</a>
+                        <a href="#">{{__('Famous people of our city')}}</a>
+                    </div>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('index')}}" class="dropbtn">{{__('Urgent Services')}}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('Tourist Safety')}}</a>
+                        <a href="#">{{__('Publications')}}</a>
+                        <a href="#">{{__('Travel agencies')}}</a>
+                    </div>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('photogallery')}}" class="dropbtn">{{__('Photo Gallery')}}</a>
+                    <div class="dropdown-content">
+                        <a href="{{route('photogallery',['tag'=>'spring'])}}">{{__('Spring Kropyvnytskyi')}}</a>
+                        <a href="{{route('photogallery',['tag'=>'summer'])}}">{{__('Summer Kropyvnytskyi')}}</a>
+                        <a href="{{route('photogallery',['tag'=>'winter'])}}">{{__('Winter Kropyvnytskyi')}}</a>
+                        <a href="{{route('photogallery',['tag'=>'autumn'])}}">{{__('Autumn Kropyvnytskyi')}}</a>
+                    </div>
+                </div>
             </ul>
         </nav>
         <div class="header_search">
-            <a href="#">
-                <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="dropdown m-auto">
+                <a class="dropbtn">
+                    <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M30.6215 28.7951L21.8059 19.9795C23.5135 17.8702 24.5416 15.19 24.5416 12.2709C24.5416 5.5051 19.0365 0 12.2708 0C5.50504 0 0 5.50504 0 12.2708C0 19.0365 5.5051 24.5416 12.2709 24.5416C15.19 24.5416 17.8702 23.5135 19.9795 21.8059L28.7951 30.6215C29.047 30.8734 29.3776 31 29.7084 31C30.0391 31 30.3697 30.8734 30.6216 30.6215C31.1266 30.1165 31.1266 29.3001 30.6215 28.7951ZM12.2709 21.9583C6.9285 21.9583 2.58335 17.6131 2.58335 12.2708C2.58335 6.92844 6.9285 2.58329 12.2709 2.58329C17.6132 2.58329 21.9584 6.92844 21.9584 12.2708C21.9584 17.6131 17.6131 21.9583 12.2709 21.9583Z" fill="white"></path>
-                </svg>
-            </a>
+                    </svg>
+                </a>
+                <div class="dropdown-content">
+                    <form action="{{route('search')}}">
+                        <input class="searchline" type="text" placeholder="{{__('Search on the site')}}">
+                    </form>
+                  </div>
+            </div>
+
         </div>
         <div class="header_heart">
             <a href="#">
@@ -43,14 +99,15 @@
                 </svg>
             </a>
         </div>
-        <div class="header_lang">
-            <a href="#">УКР
-                <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 1L3.5 3.5L6 1" stroke="white"></path>
-                </svg>
-            </a>
-            
+
+        <div class="dropdown m-auto">
+            <a class="dropbtn">{{__('m.locale')}}</a>
+            <div class="dropdown-content">
+                <a href="{{route('set_lang_en')}}">ENG</a>
+                <a href="{{route('set_lang_ua')}}">УКР</a>
+              </div>
         </div>
+
         <div class="wrap_mnu">
             <div class="toggle_mnu">
                 <span></span>
@@ -60,14 +117,7 @@
         </div>
     </div>
 
-
+    @isset($is_main_page)
+        @include('layouts._main_header')
+    @endisset
 </header>
-
-<div class="lang" style="display: flex;display: none;">
-    <a href="#">ENG</a>
-    <a href="#">РУС</a>
-</div>
-
-<form action="{{route('search')}}" method="GET">
-    <input name="s" class="search_site" type="text" placeholder="Поск на сайте" style="display: flex;display: none;" >
-</form>

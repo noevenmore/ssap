@@ -4,15 +4,15 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="form_title">
-                        Залиш свій e-mail, <br>
-                        щоб бути в курсі нових подій
+                        {{__('Leave your e-mail')}}, <br>
+                        {{__('to stay up to date')}}
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <form action="" class="form_subscription">
-                        <input type="email" required="@" class="form_input" placeholder="Ваш E-mail">
+                        <input type="email" required="@" class="form_input" placeholder="{{__('Your E-mail')}}">
                         <button class="form_button">
-                            Подписаться
+                            {{__('Subscribe')}}
                         </button>
                     </form>
                 </div>
@@ -101,78 +101,78 @@
             </div>
             <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
                 <div class="footer_title">
-                    <a href="#">Досліджуй</a>
+                    <a href="#">{{__('Explore')}}</a>
                 </div>
                 <ul>
-                    <li><a href="#">Музеї</a></li>
-                    <li><a href="#">Галереї</a></li>
-                    <li><a href="#">Парки</a></li>
-                    <li><a href="#">Історичні вали</a></li>
-                    <li><a href="#">Шедеври архітектури</a></li>
-                    <li><a href="#">Памятники</a></li>
-                    <li><a href="#">Храми</a></li>
+                    <li><a href="#">{{__('Museums')}}</a></li>
+                    <li><a href="#">{{__('Galleries')}}</a></li>
+                    <li><a href="#">{{__('Parks')}}</a></li>
+                    <li><a href="#">{{__('Historical shafts')}}</a></li>
+                    <li><a href="#">{{__('Masterpieces of architecture')}}</a></li>
+                    <li><a href="#">{{__('Monuments')}}</a></li>
+                    <li><a href="#">{{__('Temples')}}</a></li>
                 </ul>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
                 <ul>
-                    <li><a href="#">Туристичні маршрути</a></li>
-                    <li><a href="#">Замовлення екскурсій</a></li>
-                    <li><a href="#">Розваги</a></li>
+                    <li><a href="#">{{__('Tourist routes')}}</a></li>
+                    <li><a href="#">{{__('Book excursions')}}</a></li>
+                    <li><a href="#">{{__('Entertainment')}}</a></li>
                 </ul>
                 <div class="footer_title">
-                    <a href="#">Де поїсти</a>
+                    <a href="#">{{__('Where to eat')}}</a>
                 </div>
                 <ul>
-                    <li><a href="#">Кафе</a></li>
-                    <li><a href="#">Ресторани</a></li>
-                    <li><a href="#">Кавярні</a></li>
-                    <li><a href="#">Доставка їжі</a></li>
+                    <li><a href="#">{{__('Cafe')}}</a></li>
+                    <li><a href="#">{{__('Restaurants')}}</a></li>
+                    <li><a href="#">{{__('Coffee shops')}}</a></li>
+                    <li><a href="#">{{__('Food delivery')}}</a></li>
                 </ul>
                 <div class="footer_title">
-                    <a href="{{route('hotel_list')}}">Готелі</a>
+                    <a href="{{route('hotel_list')}}">{{__('Hotels')}}</a>
                 </div>
             </div>
             <div class="col-xl-1 col-lg-2 col-md-4 col-sm-6 col-6">
                 <div class="footer_title">
-                    <a href="#">Події</a>
+                    <a href="#">{{__('Events')}}</a>
                 </div>
                 <ul>
-                    <li><a href="#">Фестивалі</a></li>
-                    <li><a href="#">Виставки</a></li>
-                    <li><a href="#">Концерти</a></li>
-                    <li><a href="#">Спорт</a></li>
-                    <li><a href="#">Конференції</a></li>
-                    <li><a href="#">Інше</a></li>
+                    <li><a href="#">{{__('Festivals')}}</a></li>
+                    <li><a href="#">{{__('Exhibitions')}}</a></li>
+                    <li><a href="#">{{__('Concerts')}}</a></li>
+                    <li><a href="#">{{__('Sport')}}</a></li>
+                    <li><a href="#">{{__('Conferences')}}</a></li>
+                    <li><a href="#">{{__('Other')}}</a></li>
                 </ul>
             </div>
             <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
                 <div class="footer_title">
-                    <a href="#">Про місто</a>
+                    <a href="#">{{__('About the city')}}</a>
                 </div>
                 <ul>
-                    <li><a href="#">Історія міста та цікаві факти</a></li>
-                    <li><a href="#">Легенди нашого міста</a></li>
-                    <li><a href="#">Визначні особи нашого міста</a></li>
+                    <li><a href="#">{{__('History of the city and interesting facts')}}</a></li>
+                    <li><a href="#">{{__('Legends of our city')}}</a></li>
+                    <li><a href="#">{{__('Famous people of our city')}}</a></li>
                 </ul>
                 <div class="footer_title">
-                    <a href="#">Термінові служби</a>
+                    <a href="#">{{__('Urgent Services')}}</a>
                 </div>
                 <ul>
-                    <li><a href="#">Беспека туриста</a></li>
-                    <li><a href="#">Публікації</a></li>
-                    <li><a href="#">Туристичні фірми</a></li>
+                    <li><a href="#">{{__('Tourist Safety')}}</a></li>
+                    <li><a href="#">{{__('Publications')}}</a></li>
+                    <li><a href="#">{{__('Travel agencies')}}</a></li>
                 </ul>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-4">
                 <div class="footer_title">
-                    <a href="#">Фотогалерея</a>
+                    <a href="{{route('photogallery')}}">{{__('Photo Gallery')}}</a>
                 </div>
                 <ul>
-                    <li><a href="#">Весняний Кропивницький</a></li>
-                    <li><a href="#">Літній Кропивницький</a></li>
-                    <li><a href="#">Зимовий Кропивницький</a></li>
-                    <li><a href="#">Осінній Кропивницький</a></li>
-                    <li class="mail">Звязатись з нами
+                    <li><a href="{{route('photogallery',['tag'=>'spring'])}}">{{__('Spring Kropyvnytskyi')}}</a></li>
+                    <li><a href="{{route('photogallery',['tag'=>'summer'])}}">{{__('Summer Kropyvnytskyi')}}</a></li>
+                    <li><a href="{{route('photogallery',['tag'=>'winter'])}}">{{__('Winter Kropyvnytskyi')}}</a></li>
+                    <li><a href="{{route('photogallery',['tag'=>'autumn'])}}">{{__('Autumn Kropyvnytskyi')}}</a></li>
+                    <li class="mail">{{__('Contact us')}}
                         <a href="#" >info@kroptravel.gov.ua</a></li>
                 </ul>
             </div>
