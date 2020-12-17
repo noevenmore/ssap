@@ -29,6 +29,11 @@
         <input type="text" name="name_eng" maxlength="64" class="form-control" placeholder="Введите название..." value="{{isset($name_eng)?$name_eng:''}}">
     </div>
 
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" name="is_show" {{isset($is_show)&&!$is_show?'':'checked'}}>
+        <label class="form-check-label">Показывать фильтр пользователю</label>
+    </div>
+
 
     <button class="btn btn-primary mt-3" type="submit">OK</button>
 </form>

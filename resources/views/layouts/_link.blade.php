@@ -6,7 +6,7 @@
         {
             echo route('node_list',[
                 'type'=>$obj->filter->category_link,
-                'value'=>$obj->filter->value]);
+                'filter'=>$obj->filter->value]);
         } else
         {
             echo route('node_list',['type'=>$obj->filter->category_link]);

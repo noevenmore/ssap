@@ -28,6 +28,9 @@ class FilterController extends Controller
         $event->value=$request->input('value','');
         if (!$event->value) $event->value = '';
 
+        $event->is_show=$request->input('is_show');
+        if ($event->is_show==null) $event->is_show=false;
+
         $event->save();
     }
 

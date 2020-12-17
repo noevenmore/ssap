@@ -13,7 +13,7 @@ class MenuItem extends Model
 
     public function childrens()
     {
-        return $this->hasMany('App\Models\MenuItem','parent_id','id');
+        return $this->hasMany('App\Models\MenuItem','parent_id','id')->orderBy('position', 'desc');
     }
 
     public function filter()

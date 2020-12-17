@@ -34,7 +34,9 @@
                     </div>
                     <div class="gallery_year gallery_year--hotel">
                         @foreach ($filters as $f)
-                            <a href="{{route('node_list',['type'=>$type,'filter'=>$f->value])}}">{{$system_var_lang=="ua"?$f->name:$f->name_eng}}</a>
+                            @if ($f->is_show)
+                                <a href="{{route('node_list',['type'=>$type,'filter'=>$f->value])}}">{{$system_var_lang=="ua"?$f->name:$f->name_eng}}</a>
+                            @endif
                         @endforeach
 
                         

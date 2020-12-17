@@ -8,6 +8,7 @@
         'category_link'=>$data->category_link,
         'name'=>$data->name,
         'name_eng'=>$data->name_eng,
-        'value'=>$data->value
+        'value'=>$data->value,
+        'is_show'=>$data->is_show
         ])
 @endsection
