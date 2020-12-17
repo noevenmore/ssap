@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title','Редактирование заведения')
+@section('title','Редактирование юнитов')
 
 @section('content')
     @include('admin._hotel',
@@ -18,5 +18,6 @@
         'phones'=>$data->phones,
         'filter'=>$data->filter,
         'work_times'=>$data->work_times,
+        'is_show_ex_param'=>$data->is_show_ex_param,
         ])
 @endsection

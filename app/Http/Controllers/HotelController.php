@@ -52,6 +52,10 @@ class HotelController extends Controller
         $hotel->admin_email=$request->input('admin_email','');
         if (!$hotel->admin_email) $hotel->admin_email = '';
 
+        $hotel->is_show_ex_param=$request->input('is_show_ex_param');
+        if ($hotel->is_show_ex_param==null) $hotel->is_show_ex_param=false;
+        
+
         $hotel->work_times=MyFunction::work_days_from_request($request);
 
         $hotel->save();

@@ -36,21 +36,6 @@
     </div>
 
     <div class="form-group">
-        <label><strong>Адресс: (украинский)</strong></label>
-        <input type="text" name="addr" class="form-control" placeholder="Введите адресс..." value="{{isset($addr)?$addr:''}}">
-    </div>
-
-    <div class="form-group">
-        <label><strong>Адресс: (английский)</strong></label>
-        <input type="text" name="addr_eng" class="form-control" placeholder="Введите адресс..." value="{{isset($addr_eng)?$addr_eng:''}}">
-    </div>
-
-    <div class="form-group">
-        <label><strong>Ссылка на Booking:</strong></label>
-        <input type="text" name="blink" class="form-control" placeholder="Вставьте ссылку..." value="{{isset($blink)?$blink:''}}">
-    </div>
-
-    <div class="form-group">
         <label><strong>Изображения:</strong></label>
         <div id="imageloader" data-list="{{isset($images_list)?$images_list:""}}" data-type="hotel"></div>
     </div>
@@ -65,6 +50,23 @@
         <textarea name="text_eng" id="summernote_eng">{{isset($text_eng)?$text_eng:''}}</textarea>
     </div>
 
+    <label class="mt-5"><strong>Дополнительные параметры:</strong></label>
+
+    <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" value="1" name="is_show_ex_param" {{isset($is_show_ex_param)&&!$is_show_ex_param?'':'checked'}}>
+        <label class="form-check-label">Показывать дополнительные параметры</label>
+    </div>
+
+    <div class="form-group">
+        <label><strong>Адресс: (украинский)</strong></label>
+        <input type="text" name="addr" class="form-control" placeholder="Введите адресс..." value="{{isset($addr)?$addr:''}}">
+    </div>
+
+    <div class="form-group">
+        <label><strong>Адресс: (английский)</strong></label>
+        <input type="text" name="addr_eng" class="form-control" placeholder="Введите адресс..." value="{{isset($addr_eng)?$addr_eng:''}}">
+    </div>
+
     <div class="form-group">
         <label><strong>Номера телефонов:</strong> (можно ввести несколько через знак ;)</label>
         <input type="text" name="phones" class="form-control" placeholder="Введите номер..." value="{{isset($phones)?$phones:''}}">
@@ -73,6 +75,11 @@
     <div class="form-group">
         <label><strong>Email администратора:</strong></label>
         <input type="email" name="admin_email" class="form-control" placeholder="Введите номер..." value="{{isset($admin_email)?$admin_email:''}}">
+    </div>
+
+    <div class="form-group">
+        <label><strong>Ссылка на Booking:</strong></label>
+        <input type="text" name="blink" class="form-control" placeholder="Вставьте ссылку..." value="{{isset($blink)?$blink:''}}">
     </div>
 
     <label><strong>Время работы:</strong> (если указано время работы с 0 до 0 то будет написано что выходной)</label>

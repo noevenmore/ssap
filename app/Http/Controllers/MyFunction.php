@@ -13,10 +13,13 @@ class MyFunction extends Controller
     */
     public static function work_days_to_string($work_days)
     {
+        $lang = \App::getlocale();
+
         $last_from = -1;
         $last_to = -1;
         $last_day = -1;
         $days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+        $days_eng = ['Mo','Tu','We','Th','Fr','Sa','Su'];
 
         $work_days.='|99999-99999';
         $dd = explode('|',$work_days);
@@ -41,7 +44,13 @@ class MyFunction extends Controller
 
                     if ($last_from==0 && $last_to==0)
                     {
-                        $tm = ': Выходной';
+                        if ($lang=="ua")
+                        {
+                            $tm = ': Выходной';
+                        } else
+                        {
+                            $tm = ': Day off';
+                        }
                     } else
                     {
                         $tm = ': '.$last_from.'-'.$last_to;
@@ -49,11 +58,23 @@ class MyFunction extends Controller
 
                     if ($last_day==$day_num)
                     {
-                        $graph[] = $days[$last_day].$tm;
+                        if ($lang=="ua")
+                        {
+                            $graph[] = $days[$last_day].$tm;
+                        } else
+                        {
+                            $graph[] = $days_eng[$last_day].$tm;
+                        }
                     }
                     else
                     {
-                        $graph[]=$days[$last_day] . '-' . $days[$day_num].$tm;
+                        if ($lang=="ua")
+                        {
+                            $graph[]=$days[$last_day] . '-' . $days[$day_num].$tm;
+                        } else
+                        {
+                            $graph[]=$days_eng[$last_day] . '-' . $days_eng[$day_num].$tm;
+                        }
                     }
 
                     $last_day = $i;

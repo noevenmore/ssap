@@ -15,8 +15,8 @@
 <p class="mb-1 mt-3"><a class="btn btn-primary w-100" href="{{route('admin_filter_add')}}">Добавить фильтр</a></p>
 <p class="my-0"><a class="btn btn-primary w-100" href="{{route('admin_filter_show')}}">Просмотр фильтров</a></p>
 
-<p class="mb-1 mt-3"><a class="btn btn-primary w-100" href="{{route('admin_hotel_add')}}">Добавить заведение</a></p>
-<p class="my-0"><a class="btn btn-primary w-100" href="{{route('admin_hotel_show')}}">Просмотр заведений</a></p>
+<p class="mb-1 mt-3"><a class="btn btn-primary w-100" href="{{route('admin_hotel_add')}}">Добавить юнит</a></p>
+<p class="my-0"><a class="btn btn-primary w-100" href="{{route('admin_hotel_show')}}">Просмотр юнитов</a></p>
 
 <p class="mb-1 mt-3"><a class="btn btn-primary w-100" href="{{route('admin_menu_item_add')}}">Добавить меню</a></p>
 <p class="my-0"><a class="btn btn-primary w-100" href="{{route('admin_menu_item_show')}}">Просмотр меню</a></p>

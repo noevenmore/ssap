@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-12">
             <div class="breadcrumb">
-                <a href="/" class="main">Головна </a>/<a href="{{route('node_list')}}" class="haschild mr-3">Каталог отелей</a>/<a href="{{route('node',$data->id)}}" class="haschild">{{$data->name}}</a>
+                <a href="/" class="main">{{__('Main page')}} </a>/<a href="{{route('node_list',['type'=>$data->type])}}" class="haschild mr-3">{{__('Catalog')}}</a>/<a href="{{route('node',$data->id)}}" class="haschild">{{$system_var_lang=="ua"?$data->name:$data->name_eng}}</a>
             </div>
         </div>
     </div>
@@ -19,11 +19,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    {{$data->name}}
+                    {{$system_var_lang=="ua"?$data->name:$data->name_eng}}
                 </div>
             </div>
         </div>
     </div>
+
+    @if (count($photos)>0)
     <div class="hotel">
         <div class="container">
             <div class="row">
@@ -57,10 +59,14 @@
                 </div>
             </div>
         </div>
+        @endif
+
     </div>
     <div class="container">
         <div class="row">
             <div class="col-xl-8">
+
+                @if ($data->is_show_ex_param)
                 <div class="infoBlock">
                     <div class="infoBlock_wrapp">
                         <div class="infoBlock_adres infoBlock_item">
@@ -70,8 +76,8 @@
                                 </svg>
                             </div>
                             <div class="infoBlock_wrapper">
-                                <p>Адреса</p>
-                                <span>{{$data->addr}}</span>
+                                <p>{{__('Address')}}</p>
+                                <span>{{$system_var_lang=="ua"?$data->addr:$data->addr_eng}}</span>
                             </div>
                         </div>
                         <div class="infoBlock_telephone infoBlock_item">
@@ -88,7 +94,7 @@
                                 </svg>
                             </div>
                             <div class="infoBlock_wrapper">
-                                <p>Телефон</p>
+                                <p>{{__('Phones')}}</p>
 
                                 @foreach ($phones as $ph)
                                     <span>{{$ph}}</span>
@@ -102,7 +108,7 @@
                                 </svg>
                             </div>
                             <div class="infoBlock_wrapper">
-                                <p>Режим роботи</p>
+                                <p>{{__('Working time')}}</p>
 
                                 @foreach ($work_times as $wt)
                                     <span>{{$wt}}</span>
@@ -111,30 +117,32 @@
                         </div>
                     </div>
                     <div class="infoBlock_link">
-                        <a href="{{$data->blink}}">Посилання на booking.com</a>
+                        <a href="{{$data->blink}}">{{__('Link on booking.com')}}</a>
                     </div>
                 </div>
+                @endif
+
+
                 <div class="plain-text">
-                    {!! $data->text !!}
+                    {!! $system_var_lang=="ua"?$data->text:$data->text_eng !!}
                 </div>
             </div>
             <div class="col-xl-4">
                 <form action="" class="formMain">
                     <div class="formMain_title">
-                        Оставить свой отзыв
+                        {{__('Leave your comment')}}
                     </div>
-                    <input type="text" class="formMain_input" placeholder="Ваше имя">
-                    <input type="email" class="formMain_input" placeholder="Ваш E-mail" required="@">
-                    <textarea placeholder="Ваш комментарий" class="formMain_text"></textarea>
+                    <input type="text" class="formMain_input" placeholder="{{__('Your name')}}">
+                    <input type="email" class="formMain_input" placeholder="{{__('Your E-mail')}}" required="@">
+                    <textarea placeholder="{{__('Your comment')}}" class="formMain_text"></textarea>
                     <button class="formMain_button">
-                        Оставить отзыв
+                        {{__('Leave comment')}}
                     </button>
                 </form>
             </div>
         </div>
     </div>
 
-@include('_comments')
 </section>
 
 @include('layouts._footer')

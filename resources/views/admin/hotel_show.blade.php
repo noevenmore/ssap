@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('title','Просмотр заведений')
+@section('title','Просмотр юнитов')
 
 @section('content')
     @if (!$data->items())

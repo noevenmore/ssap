@@ -9,7 +9,7 @@
             <option value="0">Нет</option>
 
             @foreach ($menu_items as $c)
-                @if (isset($id)&&$id!=$c->id)
+                @if (!isset($id) || (isset($id)&&$id!=$c->id))
                 <option value="{{$c->id}}" {{isset($parent_id)&&$parent_id==$c->id?'selected':''}}>{{$c->name}}</option>
                 @endif
             @endforeach
