@@ -101,26 +101,85 @@
             </div>
 
 
+            
+            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+                <div class="footer_title">
+                    <a href="#">{{__('Explore')}}</a>
+                </div>
+                <ul>
+                    <li><a href="{{route('node_list',['type'=>'museum'])}}">{{__('Museums')}}</a></li>
+                    <li><a href="{{route('node_list',['type'=>'gallery'])}}">{{__('Galleries')}}</a></li>
+                    <li><a href="{{route('node_list',['type'=>'park'])}}">{{__('Parks')}}</a></li>
+                    <li><a href="{{route('node_list',['type'=>'history_val'])}}">{{__('Historical shafts')}}</a></li>
+                    <li><a href="{{route('node_list',['type'=>'architecture'])}}">{{__('Masterpieces of architecture')}}</a></li>
+                    <li><a href="{{route('node_list',['type'=>'monument'])}}">{{__('Monuments')}}</a></li>
+                    <li><a href="{{route('node_list',['type'=>'temple'])}}">{{__('Temples')}}</a></li>
 
-
-            @foreach ($menu_items as $mi)
+                </ul>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                <ul>
+                    <li><a href="{{route('excursion_list')}}">{{__('Tourist routes')}}</a></li>
+                    <li><a href="/">{{__('Book excursions')}}</a></li>
+                    <li><a href="#">{{__('Entertainment')}}</a></li>
+                </ul>
+                <div class="footer_title">
+                    <a href="#">{{__('Where to eat')}}</a>
+                </div>
+                <ul>
+                    <li><a href="{{route('node_list',['type'=>'cafe'])}}">{{__('Cafe')}}</a></li>
+                    <li><a href="{{route('node_list',['type'=>'restaurant'])}}">{{__('Restaurants')}}</a></li>
+                    <li><a href="{{route('node_list',['type'=>'coffe'])}}">{{__('Coffee shops')}}</a></li>
+                    <li><a href="#">{{__('Food delivery')}}</a></li>
+                </ul>
+                <div class="footer_title">
+                    <a href="{{route('node_list',['type'=>'hotel'])}}">{{__('Hotels')}}</a>
+                </div>
+            </div>
+            <div class="col-xl-1 col-lg-2 col-md-4 col-sm-6 col-6">
+                <div class="footer_title">
+                    <a href="#">{{__('Events')}}</a>
+                </div>
+                <ul>
+                    <li><a href="#">{{__('Festivals')}}</a></li>
+                    <li><a href="#">{{__('Exhibitions')}}</a></li>
+                    <li><a href="#">{{__('Concerts')}}</a></li>
+                    <li><a href="#">{{__('Sport')}}</a></li>
+                    <li><a href="#">{{__('Conferences')}}</a></li>
+                    <li><a href="#">{{__('Other')}}</a></li>
+                </ul>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+                <div class="footer_title">
+                    <a href="#">{{__('About the city')}}</a>
+                </div>
+                <ul>
+                    <li><a href="#">{{__('History of the city and interesting facts')}}</a></li>
+                    <li><a href="#">{{__('Legends of our city')}}</a></li>
+                    <li><a href="#">{{__('Famous people of our city')}}</a></li>
+                </ul>
+                <div class="footer_title">
+                    <a href="#">{{__('Urgent Services')}}</a>
+                </div>
+                <ul>
+                    <li><a href="#">{{__('Tourist Safety')}}</a></li>
+                    <li><a href="#">{{__('Publications')}}</a></li>
+                    <li><a href="#">{{__('Travel agencies')}}</a></li>
+                </ul>
+            </div>
             <div class="col-xl-2 col-lg-3 col-md-4">
                 <div class="footer_title">
-                    <a href="
-                        @include('layouts._link',['obj'=>$mi])
-                    ">{{ $system_var_lang=="ua"?$mi->name:$mi->name_eng }}</a>
+                    <a href="{{route('photogallery')}}">{{__('Photo Gallery')}}</a>
                 </div>
-
-                @if (count($mi->childrens))
-                        @foreach ($mi->childrens as $ch)
-                        <p class="m-0"><a href="
-                            @include('layouts._link',['obj'=>$ch])
-                            ">{{ $system_var_lang=="ua"?$ch->name:$ch->name_eng }}</a></p>
-                        @endforeach
-                @endif
+                <ul>
+                    <li><a href="{{route('photogallery',['tag'=>'spring'])}}">{{__('Spring Kropyvnytskyi')}}</a></li>
+                    <li><a href="{{route('photogallery',['tag'=>'summer'])}}">{{__('Summer Kropyvnytskyi')}}</a></li>
+                    <li><a href="{{route('photogallery',['tag'=>'winter'])}}">{{__('Winter Kropyvnytskyi')}}</a></li>
+                    <li><a href="{{route('photogallery',['tag'=>'autumn'])}}">{{__('Autumn Kropyvnytskyi')}}</a></li>
+                    <li class="mail">{{__('Contact us')}}
+                        <a href="#" >info@kroptravel.gov.ua</a></li>
+                </ul>
             </div>
-        @endforeach
-
         </div>
     </div>
     <div class="copyrightn">

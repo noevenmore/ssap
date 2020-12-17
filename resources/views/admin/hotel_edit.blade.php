@@ -13,8 +13,10 @@
         'name_eng'=>$data->name_eng,
         'text_eng'=>$data->text_eng,
         'addr_eng'=>$data->addr_eng,
+        'admin_email'=>$data->admin_email,
         'blink'=>$data->blink,
         'phones'=>$data->phones,
+        'filter'=>$data->filter,
         'work_times'=>$data->work_times,
         ])
 @endsection

@@ -5,24 +5,75 @@
         </div>
         <nav class="header_nav nav showoverflow">
             <ul class="header_menu">
-
-                @foreach ($menu_items as $mi)
-                    <div class="m-auto dropdown">
-                        <a href="
-                        @include('layouts._link',['obj'=>$mi])
-                        " class="dropbtn">{{ $system_var_lang=="ua"?$mi->name:$mi->name_eng }}</a>
-
-                        @if (count($mi->childrens))
-                            <div class="dropdown-content">
-                                @foreach ($mi->childrens as $ch)
-                                    <a href="
-                                    @include('layouts._link',['obj'=>$ch])
-                                    ">{{ $system_var_lang=="ua"?$ch->name:$ch->name_eng }}</a>
-                                @endforeach
-                            </div>
-                        @endif
+                <div class="m-auto dropdown">
+                    <a href="{{route('excursion_list')}}" class="dropbtn">{{__('Explore')}}</a>
+                    <div class="dropdown-content">
+                        <a href="{{route('node_list',['type'=>'museum'])}}">{{__('Museums')}}</a>
+                        <a href="{{route('node_list',['type'=>'gallery'])}}">{{__('Galleries')}}</a>
+                        <a href="{{route('node_list',['type'=>'park'])}}">{{__('Parks')}}</a>
+                        <a href="{{route('node_list',['type'=>'history_val'])}}">{{__('Historical shafts')}}</a>
+                        <a href="{{route('node_list',['type'=>'architecture'])}}">{{__('Masterpieces of architecture')}}</a>
+                        <a href="{{route('node_list',['type'=>'monument'])}}">{{__('Monuments')}}</a>
+                        <a href="{{route('node_list',['type'=>'temple'])}}">{{__('Temples')}}</a>
+                        <a href="{{route('excursion_list')}}">{{__('Tourist routes')}}</a>
+                        <a href="/">{{__('Book excursions')}}</a>
+                        <a href="{{route('node_list',['type'=>'entertainment'])}}">{{__('Entertainment')}}</a>
                     </div>
-                @endforeach
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('index')}}" class="dropbtn">{{__('Where to eat')}}</a>
+                    <div class="dropdown-content">
+                        <a href="{{route('node_list',['type'=>'cafe'])}}">{{__('Cafe')}}</a>
+                        <a href="{{route('node_list',['type'=>'restaurant'])}}">{{__('Restaurants')}}</a>
+                        <a href="{{route('node_list',['type'=>'coffe'])}}">{{__('Coffee shops')}}</a>
+                        <a href="#">{{__('Food delivery')}}</a>
+                    </div>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('node_list',['type'=>'hotel'])}}" class="dropbtn">{{__('Hotels')}}</a>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('index')}}" class="dropbtn">{{__('Events')}}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('Festivals')}}</a>
+                        <a href="#">{{__('Exhibitions')}}</a>
+                        <a href="#">{{__('Concerts')}}</a>
+                        <a href="#">{{__('Sport')}}</a>
+                        <a href="#">{{__('Conferences')}}</a>
+                        <a href="#">{{__('Other')}}</a>
+                    </div>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('index')}}" class="dropbtn">{{__('About the city')}}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('History of the city and interesting facts')}}</a>
+                        <a href="#">{{__('Legends of our city')}}</a>
+                        <a href="#">{{__('Famous people of our city')}}</a>
+                    </div>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('index')}}" class="dropbtn">{{__('Urgent Services')}}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('Tourist Safety')}}</a>
+                        <a href="#">{{__('Publications')}}</a>
+                        <a href="#">{{__('Travel agencies')}}</a>
+                    </div>
+                </div>
+
+                <div class="m-auto dropdown">
+                    <a href="{{route('photogallery')}}" class="dropbtn">{{__('Photo Gallery')}}</a>
+                    <div class="dropdown-content">
+                        <a href="{{route('photogallery',['tag'=>'spring'])}}">{{__('Spring Kropyvnytskyi')}}</a>
+                        <a href="{{route('photogallery',['tag'=>'summer'])}}">{{__('Summer Kropyvnytskyi')}}</a>
+                        <a href="{{route('photogallery',['tag'=>'winter'])}}">{{__('Winter Kropyvnytskyi')}}</a>
+                        <a href="{{route('photogallery',['tag'=>'autumn'])}}">{{__('Autumn Kropyvnytskyi')}}</a>
+                    </div>
+                </div>
             </ul>
         </nav>
         <div class="header_search">

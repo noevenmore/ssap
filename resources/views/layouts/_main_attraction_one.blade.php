@@ -1,16 +1,16 @@
 <div class="owl-item" style="width: auto; margin-right: 35px;">
-    <a href="{{$link}}" class="tourist_item">
+    <a href="{{route('node_list',['type'=>$data->link])}}" class="tourist_item">
         <div class="tourist-img">
-            <img src="https://memo.ua/clients/krop/html/001/img/slider1.jpg" alt="" style="opacity: 1;">
+            <img src="/upload/images/{{ $data->image->src }}" alt="" style="opacity: 1;">
             <div class="tourist_info">
                 <div class="tourist_count">
-                    {{$num}}
+                    {{$data->id}}
                 </div>
                 <div class="tourist_title">
-                    {{$title}}
+                    {{ $system_var_lang=="ua"? $data->name : $data->name_eng}}
                 </div>
                 <div class="tourist_subtitle">
-                    {{$subtitle}}
+                    
                 </div>
             </div>
         </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MyFunction;
+use App\Models\Category;
+use App\Models\Filter;
 use App\Models\Hotel;
 
 class HotelController extends Controller
@@ -44,6 +46,12 @@ class HotelController extends Controller
         $hotel->phones=$request->input('phones','');
         if (!$hotel->phones) $hotel->phones = '';
 
+        $hotel->filter=$request->input('filter','');
+        if (!$hotel->filter) $hotel->filter = '';
+
+        $hotel->admin_email=$request->input('admin_email','');
+        if (!$hotel->admin_email) $hotel->admin_email = '';
+
         $hotel->work_times=MyFunction::work_days_from_request($request);
 
         $hotel->save();
@@ -53,7 +61,9 @@ class HotelController extends Controller
 
     public function hotel_add(Request $request)
     {
+        $categorys = Category::get();
         $photos=Photo::where(['type'=>'hotel','data_id'=>0])->get();
+        $filters=Filter::get();
 
         $images_list = '';
         foreach ($photos as $ph)
@@ -61,7 +71,7 @@ class HotelController extends Controller
             $images_list = $images_list . $ph->src . ';';
         }
 
-        return view('admin.hotel_add');
+        return view('admin.hotel_add',compact('images_list','categorys','filters'));
     }
 
     public function hotel_add_post(Request $request)
@@ -75,10 +85,12 @@ class HotelController extends Controller
 
     public function hotel_edit(Request $request,$id)
     {
+        $categorys = Category::get();
         $data = Hotel::where('id',$id)->first();
 
         if (!$data) return redirect(404);
 
+        $filters=Filter::get();
         $photos=Photo::where(['type'=>'hotel','data_id'=>$id])->get();
 
         $images_list = '';
@@ -87,7 +99,7 @@ class HotelController extends Controller
             $images_list = $images_list . $ph->src . ';';
         }
 
-        return view('admin.hotel_edit',compact('data','images_list'));
+        return view('admin.hotel_edit',compact('data','images_list','categorys','filters'));
     }
 
     public function hotel_edit_post(Request $request)

@@ -21,12 +21,40 @@ Route::prefix('admin')->group(function () {
     Route::get('/event/new', [App\Http\Controllers\EventController::class, 'event_add'])->name('admin_event_add');
     Route::post('/event/new', [App\Http\Controllers\EventController::class, 'event_add_post'])->name('admin_event_add_post');
 
+    Route::get('/mi', [App\Http\Controllers\MenuItemController::class, 'event_show'])->name('admin_menu_item_show');
+    Route::get('/mi/edit/{id}', [App\Http\Controllers\MenuItemController::class, 'event_edit'])->name('admin_menu_item_edit');
+    Route::post('/mi/edit', [App\Http\Controllers\MenuItemController::class, 'event_edit_post'])->name('admin_menu_item_edit_post');
+    Route::get('/mi/new', [App\Http\Controllers\MenuItemController::class, 'event_add'])->name('admin_menu_item_add');
+    Route::post('/mi/new', [App\Http\Controllers\MenuItemController::class, 'event_add_post'])->name('admin_menu_item_add_post');
+    Route::post('/mi/delete', [App\Http\Controllers\MenuItemController::class, 'event_delete_post'])->name('admin_menu_item_delete_post');
+
     Route::get('/mpt', [App\Http\Controllers\MainPageTitleController::class, 'event_show'])->name('admin_mp_title_show');
     Route::get('/mpt/edit/{id}', [App\Http\Controllers\MainPageTitleController::class, 'event_edit'])->name('admin_mp_title_edit');
     Route::post('/mpt/edit', [App\Http\Controllers\MainPageTitleController::class, 'event_edit_post'])->name('admin_mp_title_edit_post');
     Route::get('/mpt/new', [App\Http\Controllers\MainPageTitleController::class, 'event_add'])->name('admin_mp_title_add');
     Route::post('/mpt/new', [App\Http\Controllers\MainPageTitleController::class, 'event_add_post'])->name('admin_mp_title_add_post');
     Route::post('/mpt/delete', [App\Http\Controllers\MainPageTitleController::class, 'event_delete_post'])->name('admin_mp_title_delete_post');
+
+    Route::get('/category', [App\Http\Controllers\CategoryController::class, 'event_show'])->name('admin_type_show');
+    Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'event_edit'])->name('admin_type_edit');
+    Route::post('/category/edit', [App\Http\Controllers\CategoryController::class, 'event_edit_post'])->name('admin_type_edit_post');
+    Route::get('/category/new', [App\Http\Controllers\CategoryController::class, 'event_add'])->name('admin_type_add');
+    Route::post('/category/new', [App\Http\Controllers\CategoryController::class, 'event_add_post'])->name('admin_type_add_post');
+    Route::post('/category/delete', [App\Http\Controllers\CategoryController::class, 'event_delete_post'])->name('admin_type_delete_post');
+
+    Route::get('/filters', [App\Http\Controllers\FilterController::class, 'event_show'])->name('admin_filter_show');
+    Route::get('/filter/edit/{id}', [App\Http\Controllers\FilterController::class, 'event_edit'])->name('admin_filter_edit');
+    Route::post('/filter/edit', [App\Http\Controllers\FilterController::class, 'event_edit_post'])->name('admin_filter_edit_post');
+    Route::get('/filter/new', [App\Http\Controllers\FilterController::class, 'event_add'])->name('admin_filter_add');
+    Route::post('/filter/new', [App\Http\Controllers\FilterController::class, 'event_add_post'])->name('admin_filter_add_post');
+    Route::post('/filter/delete', [App\Http\Controllers\FilterController::class, 'event_delete_post'])->name('admin_filter_delete_post');
+
+    Route::get('/texts', [App\Http\Controllers\TextController::class, 'event_show'])->name('admin_text_show');
+    Route::get('/text/edit/{id}', [App\Http\Controllers\TextController::class, 'event_edit'])->name('admin_text_edit');
+    Route::post('/text/edit', [App\Http\Controllers\TextController::class, 'event_edit_post'])->name('admin_text_edit_post');
+    Route::get('/text/new', [App\Http\Controllers\TextController::class, 'event_add'])->name('admin_text_add');
+    Route::post('/text/new', [App\Http\Controllers\TextController::class, 'event_add_post'])->name('admin_text_add_post');
+    Route::post('/text/delete', [App\Http\Controllers\TextController::class, 'event_delete_post'])->name('admin_text_delete_post');
 
     Route::post('/loadimage',[App\Http\Controllers\PhotoController::class,'load_image'])->name('admin_loadimage');
     Route::post('/deleteimage',[App\Http\Controllers\PhotoController::class,'delete_image'])->name('admin_deleteimage');
@@ -48,6 +76,7 @@ Route::get('/excursion_list', [App\Http\Controllers\SiteController::class, 'excu
 Route::get('/node/{id}', [App\Http\Controllers\SiteController::class, 'hotel'])->name('node');
 Route::get('/node_list', [App\Http\Controllers\SiteController::class, 'hotel_list'])->name('node_list');
 Route::get('/publishes', [App\Http\Controllers\SiteController::class, 'publishes'])->name('publishes');
+Route::get('/show/{id}',[App\Http\Controllers\SiteController::class, 'show_text'])->name('show_text');
 
 Auth::routes();
 

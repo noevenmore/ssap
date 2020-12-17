@@ -2,26 +2,26 @@
     @csrf
 
     <input type="text" name="id" value="{{isset($id)?$id:0}}" hidden>
-    
+     
     <div class="form-group">
-        <label><strong>Тип:</strong></label>
+        <label><strong>Категория:</strong></label>
         <select class="form-control" name="type">
-            <option value="unknown">Не выбрано</option>
-            <option value="hotel" {{isset($type)&&$type=='hotel'?'selected':''}}>Отель</option>
+            <option value="">Не выбрано</option>
 
-            <option value="museum" {{isset($type)&&$type=='museum'?'selected':''}}>Музей</option>
-            <option value="gallery" {{isset($type)&&$type=='gallery'?'selected':''}}>Галлерея</option>
-            <option value="park" {{isset($type)&&$type=='park'?'selected':''}}>Парк</option>
-            <option value="history_val" {{isset($type)&&$type=='history_val'?'selected':''}}>Исторический вал</option>
-            <option value="architecture" {{isset($type)&&$type=='architecture'?'selected':''}}>Шедевр архитектуры</option>
-            <option value="monument" {{isset($type)&&$type=='monument'?'selected':''}}>Памятник</option>
-            <option value="temple" {{isset($type)&&$type=='temple'?'selected':''}}>Храм</option>
+            @foreach ($categorys as $c)
+                <option value="{{$c->link}}" {{isset($type)&&$type==$c->link?'selected':''}}>{{$c->name}}</option>
+            @endforeach
+        </select>
+    </div>
 
-            <option value="cafe" {{isset($type)&&$type=='cafe'?'selected':''}}>Кафе</option>
-            <option value="restaurant" {{isset($type)&&$type=='restaurant'?'selected':''}}>Ресторан</option>
-            <option value="coffe" {{isset($type)&&$type=='coffe'?'selected':''}}>Кофейня</option>
+    <div class="form-group">
+        <label><strong>Фильтр:</strong></label>
+        <select class="form-control" name="filter">
+            <option value="">Не выбрано</option>
 
-            <option value="entertainment" {{isset($type)&&$type=='entertainment'?'selected':''}}>Развлечения</option>
+            @foreach ($filters as $c)
+                <option value="{{$c->value}}" {{isset($filter)&&$filter==$c->value?'selected':''}}>{{$c->name}}</option>
+            @endforeach
         </select>
     </div>
 
@@ -68,6 +68,11 @@
     <div class="form-group">
         <label><strong>Номера телефонов:</strong> (можно ввести несколько через знак ;)</label>
         <input type="text" name="phones" class="form-control" placeholder="Введите номер..." value="{{isset($phones)?$phones:''}}">
+    </div>
+
+    <div class="form-group">
+        <label><strong>Email администратора:</strong></label>
+        <input type="email" name="admin_email" class="form-control" placeholder="Введите номер..." value="{{isset($admin_email)?$admin_email:''}}">
     </div>
 
     <label><strong>Время работы:</strong> (если указано время работы с 0 до 0 то будет написано что выходной)</label>

@@ -5,66 +5,11 @@
 @section('content')
 @include('layouts._header')
 
-
-@php
-$tn = 'Не указано';
-
-switch ($type) {
-  case 'hotel':
-    $tn = __('Catalog of hotels');
-  break;
-
-  case 'museum':
-    $tn = __('Catalog of museums');
-  break;
-
-  case 'gallery':
-    $tn = __('Catalog of gallerys');
-  break;
-
-  case 'park':
-    $tn = __('Catalog of parks');
-  break;
-
-  case 'history_val':
-    $tn = __('Catalog of historical shafts');
-  break;
-
-  case 'architecture':
-    $tn = __('Catalog of architecture');
-  break;
-
-  case 'monument':
-    $tn = __('Catalog of monuments');
-  break;
-
-  case 'temple':
-    $tn = __('Catalog of temples');
-  break;
-
-  case 'cafe':
-    $tn = __('Catalog of cafes');
-  break;
-
-  case 'restaurant':
-    $tn = __('Catalog of restaurants');
-  break;
-
-  case 'coffe':
-    $tn = __('Catalog of coffes shops');
-  break;
-
-  case 'entertainment':
-    $tn = __('Catalog of entertainments');
-  break;
-}
-@endphp
-
 <div id="breadcrumbs" class="container">
     <div class="row">
         <div class="col-12">
             <div class="breadcrumb">
-                <a href="#" class="main">{{__('Main page')}}</a>/<a href="#" class="haschild">{{$tn}}</a>
+                <a href="/" class="main">{{__('Main page')}}</a>/<a href="{{route('node_list',['type'=>$type])}}" class="haschild">{{$system_var_lang=="ua"?$category->name:$category->name_eng}}</a>
             </div>
         </div>
     </div>
@@ -75,7 +20,7 @@ switch ($type) {
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    {{$tn}}
+                    {{$system_var_lang=="ua"?$category->name:$category->name_eng}}
                 </div>
             </div>
         </div>
@@ -88,21 +33,11 @@ switch ($type) {
                         {{__('Filters')}}
                     </div>
                     <div class="gallery_year gallery_year--hotel">
-                        <a href="#">Рекомендуемый</a>
-                        <a href="#">Кропивницкий</a>
-                        <ul>
-                            <li><a href="#" class="season">Весняний</a></li>
-                            <li><a href="#" class="season">Літній</a></li>
-                            <li><a href="#" class="season">Осінній</a></li>
-                            <li><a href="#" class="season">Зимовий</a></li>
-                        </ul>
-                    </div>
-                    <div class="br"></div>
-                    <div class="gallery_arhive">
-                        <a href="#">Закладки</a>
-                    </div>
-                    <div class="gallery_btn">
-                        <a href="#" class="btn">Застосувати</a>
+                        @foreach ($filters as $f)
+                            <a href="{{route('node_list',['type'=>$type,'filter'=>$f->value])}}">{{$system_var_lang=="ua"?$f->name:$f->name_eng}}</a>
+                        @endforeach
+
+                        
                     </div>
                 </div>
             </div>
@@ -112,7 +47,7 @@ switch ($type) {
                     @foreach ($data as $d)
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <div class="gallery_img">
-                            <img src="/upload/images/{{$d->image->src}}" alt="">
+                            <img src="{{$d->image!==null?'/upload/images/'.$d->image->src:'/img/no-images.png'}}" alt="">
                             <div class="gallery_views">
                                 <a href="{{route('node',$d->id)}}"><span>{{__('Review')}}</span></a>
                                 <div class="br"></div>

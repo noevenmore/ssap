@@ -14,15 +14,10 @@
             <div class="owl-stage-outer">
                 
                 <div class="owl-stage">
-                    @include('layouts._main_attraction_one',['num'=>1,'title'=>__('Museums'),'subtitle'=>'','link'=>route('node_list',['type'=>'museum'])])
-                    @include('layouts._main_attraction_one',['num'=>2,'title'=>__('Galleries'),'subtitle'=>'','link'=>route('node_list',['type'=>'gallery'])])
-                    @include('layouts._main_attraction_one',['num'=>3,'title'=>__('Parks'),'subtitle'=>'','link'=>route('node_list',['type'=>'park'])])
-                    @include('layouts._main_attraction_one',['num'=>4,'title'=>__('Historical shafts'),'subtitle'=>'','link'=>route('node_list',['type'=>'history_val'])])
-                    @include('layouts._main_attraction_one',['num'=>5,'title'=>__('Masterpieces of architecture'),'subtitle'=>'','link'=>route('node_list',['type'=>'architecture'])])
-                    @include('layouts._main_attraction_one',['num'=>6,'title'=>__('Monuments'),'subtitle'=>'','link'=>route('node_list',['type'=>'monument'])])
-                    @include('layouts._main_attraction_one',['num'=>7,'title'=>__('Temples'),'subtitle'=>'','link'=>route('node_list',['type'=>'temple'])])
-                    @include('layouts._main_attraction_one',['num'=>8,'title'=>__('Tourist routes'),'subtitle'=>'','link'=>route('excursion_list')])
-                    @include('layouts._main_attraction_one',['num'=>9,'title'=>__('Entertainment'),'subtitle'=>'','link'=>route('node_list',['type'=>'entertainment'])])
+                    @foreach ($categorys as $c)
+                        @include('layouts._main_attraction_one',['data'=>$c])
+                    @endforeach
+                    
                 </div>
             </div>
 

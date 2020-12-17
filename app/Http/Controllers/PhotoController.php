@@ -23,7 +23,7 @@ class PhotoController extends Controller
         $request->validate([
             'image'=>'required',
             'image.*'=>'max:6000|image|mimes:jpeg,png,jpg|file|dimensions:max_width=4096,max_height=4096',
-            'type'=>'required|in:hotel,event,gallery,excursion,etc',
+            'type'=>'required',
         ]);
 
         $result_files = [];
