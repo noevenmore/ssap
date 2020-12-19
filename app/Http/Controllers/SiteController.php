@@ -9,10 +9,11 @@ use App\Models\Event;
 use App\Models\MainPageTitle;
 use App\Http\Controllers\MyFunction;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Excursion;
+use App\Models\ExcursionFilter;
 use App\Models\Filter;
 use App\Models\Text;
-
-use function PHPSTORM_META\type;
 
 class SiteController extends Controller
 {
@@ -29,7 +30,9 @@ class SiteController extends Controller
         $events_conference = Event::where(['is_show'=>true,'is_main'=>true,'type'=>'conference'])->with('images')->get();
         $events_other = Event::where(['is_show'=>true,'is_main'=>true,'type'=>'other'])->with('images')->get();
 
-        return view('welcome',compact('main_page_titles','all_events','events_festivals','events_show','events_concert','events_sport','events_conference','events_other','categorys'));
+        $excursions = Excursion::where('is_show',true)->with('image_map')->get();
+
+        return view('welcome',compact('main_page_titles','all_events','events_festivals','events_show','events_concert','events_sport','events_conference','events_other','categorys','excursions'));
     }
 
     public function search(Request $request)
@@ -53,14 +56,57 @@ class SiteController extends Controller
         return view('photogallery',compact('data'));
     }
 
-    public function excursion(Request $request)
+    public function excursion(Request $request,$id)
     {
-        return view('excursion');
+        $data = Excursion::findOrFail($id);
+
+        $filters = ExcursionFilter::with('how_much')->get();
+        $work_times = MyFunction::work_days_to_string($data->work_times);
+        $phones = MyFunction::get_phones_from_line($data->phones); 
+
+        $photos = Photo::where(['type'=>'excursion','data_id'=>$id])->orderBy('tag', 'desc')->get();
+        $comments = Comment::where(['type'=>'excursion','data_id'=>$id])->orderBy('created_at','desc')->get();
+
+        return view('excursion',compact('data','work_times','phones','photos','filters','comments'));
     }
 
     public function excursion_list(Request $request)
     {
-        return view('excursions_catalog');
+        $type = $request->input('type');
+        $filter = $request->input('filter');
+        $sort_by = $request->input('sort_by');
+        $text = $request->input('text');
+
+        $filters = ExcursionFilter::with('how_much')->get();
+        $data = Excursion::with('image');
+        
+        if ($filter) $data=$data->where('filter',$filter);
+        if ($type) $data=$data->where('type',$type);
+        if ($sort_by)$data=$data->orderBy($sort_by,'desc');
+
+        $data=$data->paginate(12);
+
+        if ($filter) $data->appends(['filter'=>$filter]);
+        if ($type) $data->appends(['type'=>$type]);
+        if ($sort_by)$data->appends(['sort_by'=>$sort_by]);
+
+        return view('excursions_catalog',compact('data','filters','filter','type','sort_by','text'));
+    }
+
+    public function excursion_get(Request $request)
+    {
+        $data=Excursion::get();
+
+        return view('excursion_request');
+    }
+
+    public function event_full(Request $request,$id)
+    {
+        $data = Event::findOrFail($id);
+
+        $photos = Photo::where(['type'=>'event','data_id'=>$id])->orderBy('is_main', 'desc')->get();
+
+        return view('event',compact('data','photos'));
     }
 
     public function hotel(Request $request,$id)
@@ -104,13 +150,30 @@ class SiteController extends Controller
         if ($filter)
         {
             $data = Hotel::where(['type'=>$type,'filter'=>$filter])->with('image')->paginate(12);
+            $data->appends(['type'=>$type,'filter'=>$filter]);
         } else
         {
             $data = Hotel::where('type',$type)->with('image')->paginate(12);
+            $data->appends(['type'=>$type]);
         }
-        
 
         return view('hotels_catalog',compact('type','data','category','filters'));
+    }
+
+    public function event_list(Request $request)
+    {
+        $filter = $request->input('filter');
+
+        if ($filter)
+        {
+            $data = Event::where(['type'=>$filter,'is_show'=>true])->with('image')->paginate(12);
+            $data->appends(['type'=>$filter]);
+        } else
+        {
+            $data = Event::where('is_show',true)->with('image')->paginate(12);
+        }
+
+        return view('event_catalog',compact('data'));
     }
 
     public function publishes(Request $request)

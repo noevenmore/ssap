@@ -13,6 +13,14 @@
         }
         break;
 
+        case 'excursions':
+        echo route('excursion_list');
+        break;
+
+        case 'excursion_get':
+        echo route('excursion_get');
+        break;
+
         case 'text':
         echo route('show_text',$obj->text_id);
         break;

@@ -23,6 +23,8 @@
             <option value="index" {{(isset($link_type)&&$link_type=='index')?'selected':''}}>Главную страницу</option>
             <option value="category" {{(isset($link_type)&&$link_type=='category')?'selected':''}}>Категорию (с фильтром)</option>
             <option value="text" {{(isset($link_type)&&$link_type=='text')?'selected':''}}>Текст</option>
+            <option value="excursions" {{(isset($link_type)&&$link_type=='excursions')?'selected':''}}>Страница со списком экскурсий</option>
+            <option value="excursion_get" {{(isset($link_type)&&$link_type=='excursion_get')?'selected':''}}>Страница заказов экскурсий</option>
             <option value="gallery" {{(isset($link_type)&&$link_type=='gallery')?'selected':''}}>Галлерея</option>
             <option value="gallery_winter" {{(isset($link_type)&&$link_type=='gallery_winter')?'selected':''}}>Галлерея (зима)</option>
             <option value="gallery_spring" {{(isset($link_type)&&$link_type=='gallery_spring')?'selected':''}}>Галлерея (весна)</option>

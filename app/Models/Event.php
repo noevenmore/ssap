@@ -12,7 +12,10 @@ class Event extends Model
     public function images()
     {
         return $this->hasMany('App\Models\Photo','data_id','id')->where('type','event')->orderBy('is_main', 'desc');
+    }
 
-        //return $this->hasMany('App\Models\Photo');
+    public function image()
+    {
+        return $this->hasOne('App\Models\Photo','data_id','id')->where('type','event')->orderBy('is_main', 'desc');
     }
 }

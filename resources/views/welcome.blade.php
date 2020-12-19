@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Main page')
+@section('title',__('Main page'))
 
 @section('content')
 @include('layouts._header',['is_main_page'=>true])

@@ -14,7 +14,7 @@ class HotelController extends Controller
     public function __construct()
     {
         // Only admin access
-        //$this->middleware('admin');
+        $this->middleware('admin');
     }
 
     public function save_hotel_from_request($hotel,Request $request)

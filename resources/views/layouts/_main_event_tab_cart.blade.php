@@ -1,3 +1,4 @@
+<a href="{{route('event',$item->id)}}">
 <div class="allevent_cart">
     <div class="allevent_img">
         @if (count($item->images)>0)
@@ -8,7 +9,7 @@
     </div>
     <div class="allevent_description">
         <div class="allevent_title">
-            {{app()->getLocale()=='ua'?$item->name:$item->name_eng}}
+            {{$system_var_lang=='ua'?$item->name:$item->name_eng}}
         </div>
         <div class="allevent_wrap">
             <div class="allevent_prise">
@@ -84,3 +85,4 @@
         </div>
     </div>
 </div>
+</a>

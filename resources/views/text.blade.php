@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Main page')
+@section('title',$system_var_lang=="ua"?$text->name:$text->name_eng)
 
 @section('content')
 @include('layouts._header')
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="col-xl-4">
-            @include('_leave_comment')
+            @include('_leave_comment',['id'=>$data->id,'type'=>'text'])
         </div>
     </div>
 </div>

@@ -66134,6 +66134,7 @@ var ImageLoader = /*#__PURE__*/function (_React$Component4) {
       var fd = new FormData();
       fd.append('is_main', this.state.is_main);
       fd.append('type', this.state.type);
+      fd.append('tag', this.state.tag);
       var files = $('#file_input').get(0);
 
       for (var i = 0; i < files.files.length; i++) {
@@ -66250,9 +66251,7 @@ var ImageLoader = /*#__PURE__*/function (_React$Component4) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (ImageLoader);
-
-if (document.getElementById('imageloader')) {
-  var element = document.getElementById('imageloader');
+$.each($('#imageloader'), function (index, element) {
   var image_list = $(element).data('list');
   var param_type = $(element).data('type');
   var param_tag = $(element).data('tag');
@@ -66260,8 +66259,8 @@ if (document.getElementById('imageloader')) {
     list: image_list,
     type: param_type,
     tag: param_tag
-  }), document.getElementById('imageloader'));
-}
+  }), element);
+});
 
 /***/ }),
 

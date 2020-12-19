@@ -46,7 +46,7 @@ class MyFunction extends Controller
                     {
                         if ($lang=="ua")
                         {
-                            $tm = ': Выходной';
+                            $tm = ': Вихідний';
                         } else
                         {
                             $tm = ': Day off';
@@ -114,45 +114,52 @@ class MyFunction extends Controller
         return explode(";",$data);
     }
 
+    public static function set_sys_value($name,$value)
+    {
+        $d=System::where('name',$name)->first();
+
+        if ($d)
+        {
+            $d->value = $value;
+            $d->save();
+        }
+    }
+
     
     public static function get_temperature()
     {
-        return view('test');
+        $response = Http::get('https://api.openweathermap.org/data/2.5/weather?id=705812&units=metric&appid=ba73bfde849d815a9c3f412cde4f5ab7&lang=ru');
 
-        /*
-        $response = Http::withHeaders(['X-Gismeteo-Token'=>'56b30cb255.3443075'])->get('https://api.gismeteo.net/v2/search/cities/?query=Кропивницкий');
+        if ($response->successful())
+        {
+            $data = json_decode($response);
+        
+            MyFunction::set_sys_value('weather_night0',round($data->main->temp));
+            MyFunction::set_sys_value('weather_night1',round($data->main->feels_like));
 
-        return $response;
-        */
+            MyFunction::set_sys_value('weather_day0',round($data->main->temp_min));
+            MyFunction::set_sys_value('weather_day1',round($data->main->temp_max));
+        }
     }
 
     public static function get_money_rate()
     {
         $response = Http::get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
 
-        $data = json_decode($response);
-
-        foreach ($data as $d)
+        if ($response->successful())
         {
-            if ($d->cc == 'USD')
-            {
-                $usd = System::where('name','usd')->first();
+            $data = json_decode($response);
 
-                if ($usd)
+            foreach ($data as $d)
+            {
+                if ($d->cc == 'USD')
                 {
-                    $usd->value=round($d->rate,1);
-                    $usd->save();
+                    MyFunction::set_sys_value('usd',round($d->rate,1));
                 }
-            }
-            
-            if ($d->cc == 'EUR')
-            {
-                $eur = System::where('name','eur')->first();
-
-                if ($eur)
+                
+                if ($d->cc == 'EUR')
                 {
-                    $eur->value=round($d->rate,1);
-                    $eur->save();
+                    MyFunction::set_sys_value('eur',round($d->rate,1));
                 }
             }
         }

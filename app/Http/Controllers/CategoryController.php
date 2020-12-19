@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function __construct()
     {
         // Only admin access
-        //$this->middleware('admin');
+        $this->middleware('admin');
     }
 
     public function save_event_from_request($event,Request $request)

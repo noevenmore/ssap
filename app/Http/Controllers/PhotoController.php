@@ -15,7 +15,7 @@ class PhotoController extends Controller
     public function __construct()
     {
         // Only admin access
-        //$this->middleware('admin');
+        $this->middleware('admin');
     }
 
     public function load_image(Request $request)
@@ -86,6 +86,16 @@ class PhotoController extends Controller
         }
 
         return json_encode(['success'=>false]);
+    }
+
+    public static function delete_images_with_type_and_id($type,$data_id)
+    {
+        $images = Photo::where(['type'=>$type,'data_id'=>$data_id])->get();
+
+        foreach ($images as $i)
+        {
+            PhotoController::delete_image_from_server($i->src);
+        }
     }
 
     public function delete_image(Request $request)

@@ -192,6 +192,7 @@ class ImageLoader extends React.Component
 
         fd.append('is_main',this.state.is_main);
         fd.append('type',this.state.type);
+        fd.append('tag',this.state.tag);
 
         let files = $('#file_input').get(0);
 
@@ -294,11 +295,10 @@ class ImageLoader extends React.Component
 
 export default ImageLoader;
 
-if (document.getElementById('imageloader')) {
-    var element = document.getElementById('imageloader');
+$.each($('#imageloader'), function(index, element){
     var image_list = $(element).data('list');
     var param_type = $(element).data('type');
     var param_tag = $(element).data('tag');
 
-    ReactDOM.render(<ImageLoader list={image_list} type={param_type} tag={param_tag}/>, document.getElementById('imageloader'));
-}
+    ReactDOM.render(<ImageLoader list={image_list} type={param_type} tag={param_tag}/>, element);
+});

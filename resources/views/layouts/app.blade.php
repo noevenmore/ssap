@@ -19,4 +19,5 @@
 <script src="{{ asset('js/scripts.min.js') }}" defer></script>
 <script src="{{ asset('js/smartphoto.min.js') }}" defer></script>
 <script src="{{ asset('js/init_sp.js') }}" defer></script>
+<script src="{{ asset('js/scripts.js') }}" defer></script>
 </html>

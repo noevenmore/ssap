@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Main page')
+@section('title',$system_var_lang=="ua"?$category->name:$category->name_eng)
 
 @section('content')
 @include('layouts._header')

@@ -12,7 +12,7 @@ class EventController extends Controller
     public function __construct()
     {
         // Only admin access
-        //$this->middleware('admin');
+        $this->middleware('admin');
     }
 
     public function save_event_from_request($event,Request $request)
@@ -124,5 +124,22 @@ class EventController extends Controller
         $data = Event::paginate(10);
 
         return view('admin.event_show',compact('data'));
+    }
+
+    public function event_delete_post(Request $request)
+    {
+        $event_id = $request->input('id');
+
+        $data = Event::where('id',$event_id)->first();
+        if (!$data)
+        {
+            return json_encode(['success'=>false,'message'=>'cant found event with id '.$event_id]);
+        }
+
+        PhotoController::delete_images_with_type_and_id('event',$event_id);
+
+        $data->delete();
+
+        return json_encode(['success'=>true]);
     }
 }

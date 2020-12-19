@@ -9,18 +9,22 @@
                     </div>
                 </div>
                 <div class="col-lg-7">
-                    <form action="" class="form_subscription">
-                        <input type="email" required="@" class="form_input" placeholder="{{__('Your E-mail')}}">
-                        <button class="form_button">
+                    <form onsubmit="return subscribeEmail();" id="subscribe_form" class="form_subscription">
+                        <input id="subscribe_email" name="email" type="email" required="@" class="form_input" placeholder="{{__('Your E-mail')}}">
+
+                        <button type="submit" class="form_button">
                             {{__('Subscribe')}}
                         </button>
                     </form>
+
+                    <div id="email_sub_done" class="form_title" style="display: none;">
+                    {{__('Done!')}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
 <section class="section section_info">
     <div class="container">
@@ -30,8 +34,8 @@
                     <div class="weather_img">
                         <img src="/img/cloud.svg" alt="">
                     </div>
-                    <span class="weather_day">{{$system_var_weather_day0>0?'+'.$system_var_weather_day0:'-'.$system_var_weather_day0}}°/{{$system_var_weather_day1>0?'+'.$system_var_weather_day1:'-'.$system_var_weather_day1}}°</span>
-                    <span class="weather_night">{{$system_var_weather_night0>0?'+'.$system_var_weather_night0:'-'.$system_var_weather_night0}}°/{{$system_var_weather_night1>0?'+'.$system_var_weather_night1:'-'.$system_var_weather_night1}}°</span>
+                    <span class="weather_day">{{$system_var_weather_day0>0?'+'.$system_var_weather_day0:$system_var_weather_day0}}°/{{$system_var_weather_day1>0?'+'.$system_var_weather_day1:$system_var_weather_day1}}°</span>
+                    <span class="weather_night">{{$system_var_weather_night0>0?'+'.$system_var_weather_night0:$system_var_weather_night0}}°/{{$system_var_weather_night1>0?'+'.$system_var_weather_night1:$system_var_weather_night1}}°</span>
                 </div>
             </div>
             <div class="col-lg-5 col-md-7 col-sm-12">
@@ -64,7 +68,7 @@
             </div>
             <div class="col-lg-2 col-md-2 col-sm-12">
                 <div class="date">
-                    <span>04.12.2020</span>
+                    <span>{{$system_var_time_now->format('d.m.Y')}}</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-12 col-sm-12">

@@ -45,14 +45,6 @@
                             @include('layouts._main_event_tab',['data'=>$events_sport])
                             @include('layouts._main_event_tab',['data'=>$events_conference])
                             @include('layouts._main_event_tab',['data'=>$events_other])
-                            <!--
-                            <div class="tab_item" style="display: none;">Содержимое2</div>
-                            <div class="tab_item" style="display: none;">Содержимое3</div>
-                            <div class="tab_item" style="display: none;">Содержимое4</div>
-                            <div class="tab_item" style="display: none;">Содержимое5</div>
-                            <div class="tab_item" style="display: none;">Содержимое6</div>
-                            <div class="tab_item" style="display: none;">Содержимое7</div>
-                            -->
                         </div>
                     </div>
                 </div>

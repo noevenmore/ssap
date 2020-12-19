@@ -11,13 +11,11 @@ class AdminController extends Controller
     public function __construct()
     {
         // Only admin access
-        //$this->middleware('admin');
+        $this->middleware('admin');
     }
 
     public function index(Request $request)
     {
-
-
         return view('admin.main');
     }
 }

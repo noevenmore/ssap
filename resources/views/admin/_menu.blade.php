@@ -3,6 +3,14 @@
 
 <p class="mb-1 mt-3"><a class="btn btn-primary w-100" href="{{route('admin_var_editor_show')}}">Редактор значений</a></p>
 
+
+<p class="mb-1 mt-3"><a class="btn btn-primary w-100" href="{{route('admin_excursion_filter_add')}}">Добавить фильтр экскурсии</a></p>
+<p class="my-0"><a class="btn btn-primary w-100" href="{{route('admin_excursion_filter_show')}}">Просмотр фильтров экскурсий</a></p>
+
+<p class="mb-1 mt-3"><a class="btn btn-primary w-100" href="{{route('admin_excursion_add')}}">Добавить экскурсии</a></p>
+<p class="mb-1"><a class="btn btn-primary w-100" href="{{route('admin_excursion_map_show')}}">Добавить карту маршрута</a></p>
+<p class="my-0"><a class="btn btn-primary w-100" href="{{route('admin_excursion_show')}}">Просмотр экскурсий</a></p>
+
 <p class="mb-1 mt-3"><a class="btn btn-primary w-100" href="{{route('admin_mp_title_add')}}">Добавить надпись на главной</a></p>
 <p class="my-0"><a class="btn btn-primary w-100" href="{{route('admin_mp_title_show')}}">Просмотр надписей на главной</a></p>
 
