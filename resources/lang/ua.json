@@ -13,6 +13,9 @@
     "to stay up to date":"щоб бути в курсі нових подій",
     "Your name":"Ваше ім'я",
     "Your E-mail":"Ваш E-mail",
+    "Your phone number":"Ваш номер телефону",
+    "People count":"Кількість людей",
+    "Date":"Дата",
     "Search on the site":"Пошук на сайті",
     "Your comment":"Ваш відгук",
     "Leave comment":"Залишити відгук",
@@ -103,10 +106,13 @@
     "Individual":"Індивідуальні",
     "Group":"Групові",
     "Search by description":"Шукати за описом",
+    "Search by text":"Шукати текст",
     "Book this tour now":"Замовте цю екскурсію прямо зараз",
     "Order":"Замовити",
     "SHOW":"ДЕТАЛЬНІШЕ",
     "Routes":"Маршрути",
     "Done!":"Виконано!",
-    "Reviews":"Отзывы"
+    "Reviews":"Відгуки",
+    "New ones first":"Спочатку нові",
+    "At first old":"Спочатку старі"
 }

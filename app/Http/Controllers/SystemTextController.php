@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SystemText;
 use Illuminate\Http\Request;
-use App\Models\Text;
-use App\Http\Controllers\SearchController;
 
-class TextController extends Controller
+class SystemTextController extends Controller
 {
     public function __construct()
     {
@@ -16,11 +15,11 @@ class TextController extends Controller
 
     public function save_event_from_request($event,Request $request)
     {
-        $event->name=$request->input('name','');
-        if (!$event->name) $event->name = '';
+        $event->caption=$request->input('caption','');
+        if (!$event->caption) $event->caption = '';
 
-        $event->name_eng=$request->input('name_eng','');
-        if (!$event->name_eng) $event->name_eng = '';
+        $event->caption_eng=$request->input('caption_eng','');
+        if (!$event->caption_eng) $event->caption_eng = '';
 
         $event->text=$request->input('text','');
         if (!$event->text) $event->text = '';
@@ -29,13 +28,12 @@ class TextController extends Controller
         if (!$event->text_eng) $event->text_eng = '';
 
         $event->save();
-
-        SearchController::DoSave('text',$event);
     }
 
+    /*
     public function event_add(Request $request)
     {
-        return view('admin.text_add');
+        return view('admin.system_text_add');
     }
 
     public function event_add_post(Request $request)
@@ -44,23 +42,24 @@ class TextController extends Controller
 
         $this->save_event_from_request($data,$request);
 
-        return redirect(route('admin_text_show'));
+        return redirect(route('admin_system_text_show'));
     }
+    */
 
     public function event_edit(Request $request,$id)
     {
-        $data = Text::where('id',$id)->first();
+        $data = SystemText::where('id',$id)->first();
 
         if (!$data) return redirect(404);
 
-        return view('admin.text_edit',compact('data'));
+        return view('admin.system_text_edit',compact('data'));
     }
 
     public function event_edit_post(Request $request)
     {
         $event_id = $request->input('id');
 
-        $data = Text::where('id',$event_id)->first();
+        $data = SystemText::where('id',$event_id)->first();
         if (!$data)
         {
             return json_encode(['success'=>false,'message'=>'cant found text with id '.$event_id]);
@@ -68,29 +67,30 @@ class TextController extends Controller
 
         $this->save_event_from_request($data,$request);
 
-        return redirect(route('admin_text_show'));
+        return redirect(route('admin_system_text_show'));
     }
 
     public function event_show(Request $request)
     {
-        $data = Text::paginate(10);
+        $data = SystemText::paginate(10);
 
-        return view('admin.text_show',compact('data'));
+        return view('admin.system_text_show',compact('data'));
     }
 
+    /*
     public function event_delete_post(Request $request)
     {
         $event_id = $request->input('id');
 
-        $data = Text::where('id',$event_id)->first();
+        $data = SystemText::where('id',$event_id)->first();
         if (!$data)
         {
             return json_encode(['success'=>false,'message'=>'cant found text with id '.$event_id]);
         }
 
-        SearchController::DoDelete('text',$data);
         $data->delete();
 
         return json_encode(['success'=>true]);
     }
+    */
 }

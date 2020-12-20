@@ -23,4 +23,9 @@ class Excursion extends Model
     {
         return $this->hasOne('App\Models\Photo','data_id','id')->where(['type'=>'excursion','tag'=>'map'])->orderBy('is_main', 'desc');
     }
+
+    public function comment_count()
+    {
+        return $this->hasOne('App\Models\Comment','data_id','id')->where(['type'=>'excursion','is_check'=>true])->count();
+    }
 }

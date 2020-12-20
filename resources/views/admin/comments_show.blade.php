@@ -1,9 +1,8 @@
 @extends('admin.app')
-@section('title','Просмотр юнитов')
+@section('title','Просмотр комментариев')
 
 @section('content')
 @include('admin._modal_delete')
-
     @if (!$data->items())
         <div class="alert alert-info text-center">
             Ничего нет
@@ -15,8 +14,8 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Тип</th>
-            <th scope="col">Название</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Дата</th>
             <th scope="col">Действия</th>
           </tr>
         </thead>
@@ -25,13 +24,10 @@
     @foreach ($data as $d)
     <tr>
         <th scope="row">{{$d->id}}</th>
-        <td>{{$d->type}}</td>
-        <td>{{$d->name}}</td>
-        <td><a class="btn btn-sm btn-primary" href="{{route('admin_hotel_edit',$d->id)}}">Редактировать</a>
-          <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalDeleteWindow" data-id="{{$d->id}}" data-url="{{route('admin_hotel_delete_post')}}">Удалить</button>
+        <td>{{$d->is_check?'Опубликован':'Ожидает проверки'}}</td>
+        <td>{{date('d.m.Y',strtotime($d->created_at))}}</td>
+        <td><a class="btn btn-sm btn-primary" href="{{route('admin_comment_edit',$d->id)}}">Редактировать</a>
         </td>
-      
-        
       </tr>
     @endforeach
 

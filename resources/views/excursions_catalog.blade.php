@@ -35,22 +35,21 @@
                 <div class="filter_input-input w-100">
                     <input type="text" name="text" class="w-100" placeholder="{{__('Search by description')}}" value="{{$text}}">
                 </div>
-                <div class="filter_input-search">
-                    <button id="button_submit" type="submit" hidden></button>
-                    <img onclick="$('#button_submit').click();" src="img/search.svg" alt="">
+                <div class="filter_input-search" onclick="$('#button_submit').click();">
+                    <img src="img/search.svg" alt="">
                 </div>
             </div>
         </div>
         <div class="subfilter">
             <div class="filter_items">
                 <div class="filter_item">
-                    <a href="{{route('excursion_list',['sort_by'=>'popularity'])}}">{{__('Popular')}}</a>
+                    <a href="{{route('excursion_list',['sort_by'=>'popularity','type'=>$type,'text'=>$text])}}">{{__('Popular')}}</a>
                 </div>
                 <div class="filter_item">
-                    <a href="{{route('excursion_list',['sort_by'=>'price'])}}">{{__('sort by price')}}</a>
+                    <a href="{{route('excursion_list',['sort_by'=>'price','type'=>$type,'text'=>$text])}}">{{__('sort by price')}}</a>
                 </div>
                 <div class="filter_item">
-                    <a href="{{route('excursion_list',['sort_by'=>'rate'])}}">{{__('sort by reviews')}}</a>
+                    <a href="{{route('excursion_list',['sort_by'=>'rate','type'=>$type,'text'=>$text])}}">{{__('sort by reviews')}}</a>
                 </div>
             </div>
             <div class="filter_color">
@@ -83,6 +82,8 @@
                 </div>
             </div>
         </div>
+
+        <button id="button_submit" type="submit" hidden></button>
         </form>
     </div>
 
@@ -119,71 +120,7 @@
                                 </svg>
 
 
-                                @php
-                                $count = $d->length;
-                                $days = floor($count / 60 / 24);
-                                $count = $count - ($days * 60 * 24);
-                                $hours = floor($count / 60);
-                                $count = $count - ($hours * 60);
-                
-                                $result = '';
-                
-                                switch ($days) {
-                                    case 0:
-                                    break;
-                
-                                    case 1:
-                                    $result.=$days.__('m.1d');
-                                    break;
-                
-                                    case 2:
-                                    case 3:
-                                    case 4:
-                                    $result.=$days.__('m.2d');
-                                    break;
-                
-                                    
-                                    default:
-                                    $result.=$days.__('m.md');
-                                    break;
-                                }
-                
-                                switch ($hours) {
-                                    case 0:
-                                    break;
-                
-                                    case 1:
-                                    if ($result!='') $result.=' ';
-                                    $result.=$hours.__('m.1h');
-                                    break;
-                
-                                    case 2:
-                                    case 3:
-                                    case 4:
-                                    if ($result!='') $result.=' ';
-                                    $result.=$hours.__('m.2h');
-                                    break;
-                
-                                    
-                                    default:
-                                    if ($result!='') $result.=' ';
-                                    $result.=$hours.__('m.mh');
-                                    break;
-                                }
-                
-                                switch ($count) {
-                                    case 0:
-                                    break;
-                                    
-                                    default:
-                                    if ($result!='') $result.=' ';
-                                    $result.=$count.__('m.m');
-                                    break;
-                                }
-                
-                                @endphp
-
-                                {{$result}}
+                                @include('layouts._time',['count'=>$d->length])
                             </div>
                         </div>
                         
@@ -192,12 +129,12 @@
 
                             </div>
                             <div class="excursion_rate">
-                                <span>??????? {{__('responses')}}</span>
+                                <span>{{ $d->comment_count() }} {{__('responses')}}</span>
                             </div>
                         </div>
                         <div class="publication_post">
                             <div class="publication_title">
-                                {{$system_var_lang=="ua"?$d->name:$d->name_eng}}</a>
+                                {{$system_var_lang=="ua"?$d->name:$d->name_eng}}
                             </div>
                             <div class="publication_date">
                                 {{date('d.m.Y',strtotime($d->created_at))}}

@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\SearchController;
 
 class EventController extends Controller
 {
@@ -63,6 +64,7 @@ class EventController extends Controller
         $event->save();
 
         PhotoController::publish_images($event->id,'event');
+        SearchController::DoSave('event',$event);
     }
 
     public function event_add(Request $request)
@@ -137,6 +139,7 @@ class EventController extends Controller
         }
 
         PhotoController::delete_images_with_type_and_id('event',$event_id);
+        SearchController::DoDelete('event',$data);
 
         $data->delete();
 

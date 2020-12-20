@@ -141,6 +141,8 @@
                 <div class="plain-text">
                     {!! $system_var_lang=="ua"?$data->text:$data->text_eng !!}
                 </div>
+
+                @include('_comments')
             </div>
             <div class="col-xl-4">
                 @include('_leave_comment',['id'=>$data->id,'type'=>'event'])

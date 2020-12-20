@@ -1,13 +1,11 @@
 <?php
 
+use App\Models\SystemText;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Http\Controllers\MyFunction;
 
-use App\Models\System;
-
-class AddSystemFields extends Migration
+class AddInfoInSystemTexts extends Migration
 {
     /**
      * Run the migrations.
@@ -16,17 +14,17 @@ class AddSystemFields extends Migration
      */
     public function up()
     {
-        $list = ['usd','eur','weather_day0','weather_day1','weather_night0','weather_night1','facebook','instagram','telegram'];
+        $list = ['404','how_to_get_airplane','how_to_get_train','how_to_get_bus','how_to_get_car'];
         for ($i=0;$i<count($list);$i++)
         {
-            $m = new System;
+            $m = new SystemText;
             $m->name = $list[$i];
-            $m->value = '0';
+            $m->text = $list[$i];
+            $m->text_eng = $list[$i];
+            $m->caption = $list[$i];
+            $m->caption_eng = $list[$i];
             $m->save();
         }
-
-        MyFunction::get_money_rate();
-        MyFunction::get_temperature();
     }
 
     /**
@@ -36,10 +34,11 @@ class AddSystemFields extends Migration
      */
     public function down()
     {
-        $list = ['usd','eur','weather_day0','weather_day1','weather_night0','weather_night1','facebook','instagram','telegram'];
+        $list = ['404','how_to_get_airplane','how_to_get_train','how_to_get_bus','how_to_get_car'];
+
         for ($i=0;$i<count($list);$i++)
         {
-            $m = System::where('name',$list[$i]);
+            $m = SystemText::where('name',$list[$i]);
 
             if ($m) $m->delete();
         }

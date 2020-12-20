@@ -1,4 +1,4 @@
-@isset($comments)
+@if(isset($comments) && count($comments)>0)
     <div class="comment">
         <div class="container">
             <div class="row">
@@ -40,7 +40,9 @@
             </div>
         </div>
     @endforeach
-@endisset
+
+    @include('pagination',['data'=>$comments])
+@endif
 <!--
 <div class="container comment comment--admin">
     <div class="row">

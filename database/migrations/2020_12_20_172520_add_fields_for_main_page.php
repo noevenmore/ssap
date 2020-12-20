@@ -1,13 +1,12 @@
 <?php
 
+use App\Models\SystemText;
+use App\Models\System;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Http\Controllers\MyFunction;
 
-use App\Models\System;
-
-class AddSystemFields extends Migration
+class AddFieldsForMainPage extends Migration
 {
     /**
      * Run the migrations.
@@ -16,17 +15,23 @@ class AddSystemFields extends Migration
      */
     public function up()
     {
-        $list = ['usd','eur','weather_day0','weather_day1','weather_night0','weather_night1','facebook','instagram','telegram'];
+        $m = new SystemText;
+        $m->name = 
+        $m->text = 
+        $m->text_eng = 
+        $m->caption = 
+        $m->caption_eng = 'main_page';
+        $m->save();
+
+
+        $list = ['main_page_link0','main_page_link1','main_page_link2','main_page_link'];
         for ($i=0;$i<count($list);$i++)
         {
             $m = new System;
             $m->name = $list[$i];
-            $m->value = '0';
+            $m->value = '';
             $m->save();
         }
-
-        MyFunction::get_money_rate();
-        MyFunction::get_temperature();
     }
 
     /**
@@ -36,7 +41,11 @@ class AddSystemFields extends Migration
      */
     public function down()
     {
-        $list = ['usd','eur','weather_day0','weather_day1','weather_night0','weather_night1','facebook','instagram','telegram'];
+        $m = SystemText::where('name','main_page');
+
+        if ($m) $m->delete();
+
+        $list = ['main_page_link0','main_page_link1','main_page_link2','main_page_link'];
         for ($i=0;$i<count($list);$i++)
         {
             $m = System::where('name',$list[$i]);

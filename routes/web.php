@@ -5,15 +5,37 @@ use Illuminate\Support\Facades\Route;
 // ADMIN PANEL
 Route::prefix('admin')->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin_index');
+    Route::get('/search-recalculate',[App\Http\Controllers\SearchController::class, 'Recalculate'])->name('search-recalculate');
 
-    Route::get('/var_ditor', [App\Http\Controllers\SystemController::class, 'var_editor_show'])->name('admin_var_editor_show');
-    Route::post('/var_ditor', [App\Http\Controllers\SystemController::class, 'var_editor_update_post'])->name('admin_var_editor_update_post');
+    Route::get('/var_editor', [App\Http\Controllers\SystemController::class, 'var_editor_show'])->name('admin_var_editor_show');
+    Route::post('/var_editor', [App\Http\Controllers\SystemController::class, 'var_editor_update_post'])->name('admin_var_editor_update_post');
+
+    Route::get('/link_editor', [App\Http\Controllers\AdminController::class, 'main_page_link_editor'])->name('admin_main_page_link_editor');
+    Route::post('/link_editor', [App\Http\Controllers\AdminController::class, 'main_page_link_editor_post'])->name('admin_main_page_link_editor_post');
+
+    Route::get('/mailing',[App\Http\Controllers\AdminController::class, 'mailing'])->name('admin_mailing');
+    Route::post('/mailing',[App\Http\Controllers\AdminController::class, 'mailing_post'])->name('admin_mailing_post');
+
+    Route::get('/systexts', [App\Http\Controllers\SystemTextController::class, 'event_show'])->name('admin_system_text_show');
+    Route::get('/systext/edit/{id}', [App\Http\Controllers\SystemTextController::class, 'event_edit'])->name('admin_system_text_edit');
+    Route::post('/systext/edit', [App\Http\Controllers\SystemTextController::class, 'event_edit_post'])->name('admin_system_text_edit_post');
+
+    Route::get('/comments',[App\Http\Controllers\AdminController::class, 'user_comments'])->name('admin_comments_show');
+    Route::get('/comment/{id}',[App\Http\Controllers\AdminController::class, 'user_comment_full'])->name('admin_comment_edit');
+    Route::post('/comment_delete',[App\Http\Controllers\AdminController::class, 'comment_delete'])->name('admin_comment_delete_post');
+    Route::post('/comment_verify',[App\Http\Controllers\AdminController::class, 'comment_verify'])->name('admin_comment_verify_post');
+
+    Route::get('/orders',[App\Http\Controllers\AdminController::class, 'excursion_orders'])->name('admin_orders_show');
+    Route::get('/order/{id}',[App\Http\Controllers\AdminController::class, 'excursion_order_full'])->name('admin_order_edit');
+    Route::post('/order_delete',[App\Http\Controllers\AdminController::class, 'excursion_order_delete'])->name('admin_order_delete_post');
+    Route::post('/order_verify',[App\Http\Controllers\AdminController::class, 'excursion_order_verify'])->name('admin_order_verify_post');
 
     Route::get('/hotels', [App\Http\Controllers\HotelController::class, 'hotel_show'])->name('admin_hotel_show');
     Route::get('/hotel/edit/{id}', [App\Http\Controllers\HotelController::class, 'hotel_edit'])->name('admin_hotel_edit');
     Route::post('/hotel/edit', [App\Http\Controllers\HotelController::class, 'hotel_edit_post'])->name('admin_hotel_edit_post');
     Route::get('/hotel/new', [App\Http\Controllers\HotelController::class, 'hotel_add'])->name('admin_hotel_add');
     Route::post('/hotel/new', [App\Http\Controllers\HotelController::class, 'hotel_add_post'])->name('admin_hotel_add_post');
+    Route::post('/hotel/delete', [App\Http\Controllers\HotelController::class, 'hotel_delete_post'])->name('admin_hotel_delete_post');
 
     Route::get('/events', [App\Http\Controllers\EventController::class, 'event_show'])->name('admin_event_show');
     Route::get('/event/edit/{id}', [App\Http\Controllers\EventController::class, 'event_edit'])->name('admin_event_edit');
@@ -21,7 +43,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/event/new', [App\Http\Controllers\EventController::class, 'event_add'])->name('admin_event_add');
     Route::post('/event/new', [App\Http\Controllers\EventController::class, 'event_add_post'])->name('admin_event_add_post');
     Route::post('/event/delete', [App\Http\Controllers\EventController::class, 'event_delete_post'])->name('admin_event_delete_post');
-
 
     Route::get('/excursion', [App\Http\Controllers\ExcursionController::class, 'event_show'])->name('admin_excursion_show');
     Route::get('/excursion/edit/{id}', [App\Http\Controllers\ExcursionController::class, 'event_edit'])->name('admin_excursion_edit');
@@ -93,7 +114,6 @@ Route::get('/search', [App\Http\Controllers\SiteController::class, 'search'])->n
 Route::get('/photogallery', [App\Http\Controllers\SiteController::class, 'photogallery'])->name('photogallery');
 Route::get('/excursion/{id}', [App\Http\Controllers\SiteController::class, 'excursion'])->name('excursion');
 Route::get('/excursion_list', [App\Http\Controllers\SiteController::class, 'excursion_list'])->name('excursion_list');
-Route::get('/excursion_get', [App\Http\Controllers\SiteController::class, 'excursion_get'])->name('excursion_get');
 Route::get('/node/{id}', [App\Http\Controllers\SiteController::class, 'hotel'])->name('node');
 Route::get('/node_list', [App\Http\Controllers\SiteController::class, 'hotel_list'])->name('node_list');
 Route::get('/event/{id}', [App\Http\Controllers\SiteController::class, 'event_full'])->name('event');
@@ -103,8 +123,11 @@ Route::get('/show/{id}',[App\Http\Controllers\SiteController::class, 'show_text'
 Route::post('/subscribe',[App\Http\Controllers\EmailDBController::class,'subscribe'])->name('subscribe');
 Route::post('/unsubscribe',[App\Http\Controllers\EmailDBController::class,'unsubscribe'])->name('unsubscribe');
 Route::post('/comment',[App\Http\Controllers\CommentController::class,'comment'])->name('new_comment');
+Route::post('/excursion_order',[App\Http\Controllers\ExcursionRequestController::class,'order'])->name('excursion_order');
 
 Auth::routes();
 
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/how/{type}',[App\Http\Controllers\SiteController::class, 'how_to_get'])->name('how_to_get');
+Route::fallback([App\Http\Controllers\SiteController::class, 'page404']);

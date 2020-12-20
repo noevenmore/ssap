@@ -10,7 +10,7 @@ class EmailDBController extends Controller
     public function subscribe(Request $request)
     {
         $request->validate([
-            'email'=>'required|email|unique:App\Models\EmailDB,email'
+            'email'=>'required|email|max:127|unique:App\Models\EmailDB,email'
         ]);
 
         $data=new EmailDB;

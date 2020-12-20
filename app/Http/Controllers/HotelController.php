@@ -8,6 +8,7 @@ use App\Http\Controllers\MyFunction;
 use App\Models\Category;
 use App\Models\Filter;
 use App\Models\Hotel;
+use App\Http\Controllers\SearchController;
 
 class HotelController extends Controller
 {
@@ -61,6 +62,7 @@ class HotelController extends Controller
         $hotel->save();
 
         PhotoController::publish_images($hotel->id,'hotel');
+        SearchController::DoSave('node',$hotel);
     }
 
     public function hotel_add(Request $request)
@@ -128,8 +130,21 @@ class HotelController extends Controller
         return view('admin.hotel_show',compact('data'));
     }
 
-    public function hotel_delete(Request $request)
+    public function hotel_delete_post(Request $request)
     {
-        //
+        $event_id = $request->input('id');
+
+        $data = Hotel::where('id',$event_id)->first();
+        if (!$data)
+        {
+            return json_encode(['success'=>false,'message'=>'cant found node with id '.$event_id]);
+        }
+
+        PhotoController::delete_images_with_type_and_id('hotel',$event_id);
+        SearchController::DoDelete('node',$data);
+
+        $data->delete();
+
+        return json_encode(['success'=>true]);
     }
 }

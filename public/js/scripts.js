@@ -55,3 +55,39 @@ window.leaveComment = function()
 
     return false;
 }
+
+window.leaveExcursionOrder = function()
+{
+    var uid = $('#excursion_order_id').val();
+    var uname = $('#excursion_order_name').val();
+    var mail = $('#excursion_order_email').val();
+    var phones = $('#excursion_order_phone').val();
+    var pcount = $('#excursion_order_pcount').val();
+    var udate = $('#excursion_order_date').val();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+    $.ajax({
+        url: '/excursion_order',
+        data: {
+            id:uid,
+            name:uname,
+            email:mail,
+            phone:phones,
+            count:pcount,
+            date:udate
+        },
+        mimeType:'multipart/form-data',
+        type: "post"
+    });
+
+    $('#excursion_order_form_title').hide();
+    $('#excursion_order_form').hide();
+    $('#excursion_order_form_done').show();
+
+    return false;
+}

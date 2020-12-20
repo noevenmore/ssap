@@ -13,6 +13,9 @@ use App\Models\Comment;
 use App\Models\Excursion;
 use App\Models\ExcursionFilter;
 use App\Models\Filter;
+use App\Models\Search;
+use App\Models\System;
+use App\Models\SystemText;
 use App\Models\Text;
 
 class SiteController extends Controller
@@ -31,13 +34,39 @@ class SiteController extends Controller
         $events_other = Event::where(['is_show'=>true,'is_main'=>true,'type'=>'other'])->with('images')->get();
 
         $excursions = Excursion::where('is_show',true)->with('image_map')->get();
+        $main_page_block = SystemText::where('name','main_page')->first();
+        $main_page_photo=Photo::where('type','main')->first();
 
-        return view('welcome',compact('main_page_titles','all_events','events_festivals','events_show','events_concert','events_sport','events_conference','events_other','categorys','excursions'));
+        $mpl0s = System::where('name','main_page_link0')->first();
+        if ($mpl0s) $mpl0 = Filter::where('id',$mpl0s->value)->first(); else $mpl0=null;
+
+        $mpl1s = System::where('name','main_page_link1')->first();
+        if ($mpl1s) $mpl1 = Filter::where('id',$mpl1s->value)->first(); else $mpl1=null;
+
+        $mpl2s = System::where('name','main_page_link2')->first();
+        if ($mpl2s) $mpl2 = Filter::where('id',$mpl2s->value)->first(); else $mpl2=null;
+
+        return view('welcome',compact('main_page_titles','all_events','events_festivals','events_show','events_concert','events_sport','events_conference','events_other','categorys','excursions','main_page_block','main_page_photo','mpl0','mpl1','mpl2'));
     }
 
     public function search(Request $request)
     {
-        return view('welcome');
+        $text = $request->input('t');
+        $filter = $request->input('filter');
+
+        $data=Search::where('name','like','%'.$text.'%')
+        ->orWhere('name_eng','like','%'.$text.'%')
+        ->orWhere('text','like','%'.$text.'%')
+        ->orWhere('text_eng','like','%'.$text.'%');
+
+        if ($filter) $data = $data->orderBy('created_at','asc');
+
+        $data = $data->paginate(12);
+
+        $data=$data->appends(['t'=>$text]);
+        if ($filter) $data->appends(['filter'=>$filter]);
+
+        return view('search',compact('data','text','filter'));
     }
 
     public function photogallery(Request $request)
@@ -65,7 +94,7 @@ class SiteController extends Controller
         $phones = MyFunction::get_phones_from_line($data->phones); 
 
         $photos = Photo::where(['type'=>'excursion','data_id'=>$id])->orderBy('tag', 'desc')->get();
-        $comments = Comment::where(['type'=>'excursion','data_id'=>$id])->orderBy('created_at','desc')->get();
+        $comments = Comment::where(['type'=>'excursion','data_id'=>$id,'is_check'=>true])->orderBy('created_at','desc')->paginate(10);
 
         return view('excursion',compact('data','work_times','phones','photos','filters','comments'));
     }
@@ -78,7 +107,16 @@ class SiteController extends Controller
         $text = $request->input('text');
 
         $filters = ExcursionFilter::with('how_much')->get();
-        $data = Excursion::with('image');
+
+        if ($text)
+        {
+            $data=Excursion::where(function ($q) use ($text) {
+                $q->where('name','like','%'.$text.'%')
+                ->orWhere('name_eng','like','%'.$text.'%')
+                ->orWhere('text','like','%'.$text.'%')
+                ->orWhere('text_eng','like','%'.$text.'%');
+            })->with(['image']);
+        } else $data = Excursion::with(['image']);
         
         if ($filter) $data=$data->where('filter',$filter);
         if ($type) $data=$data->where('type',$type);
@@ -86,6 +124,7 @@ class SiteController extends Controller
 
         $data=$data->paginate(12);
 
+        if ($text) $data->appends(['text'=>$text]);
         if ($filter) $data->appends(['filter'=>$filter]);
         if ($type) $data->appends(['type'=>$type]);
         if ($sort_by)$data->appends(['sort_by'=>$sort_by]);
@@ -93,20 +132,14 @@ class SiteController extends Controller
         return view('excursions_catalog',compact('data','filters','filter','type','sort_by','text'));
     }
 
-    public function excursion_get(Request $request)
-    {
-        $data=Excursion::get();
-
-        return view('excursion_request');
-    }
-
     public function event_full(Request $request,$id)
     {
         $data = Event::findOrFail($id);
 
         $photos = Photo::where(['type'=>'event','data_id'=>$id])->orderBy('is_main', 'desc')->get();
+        $comments = Comment::where(['type'=>'event','data_id'=>$id,'is_check'=>true])->orderBy('created_at','desc')->paginate(10);
 
-        return view('event',compact('data','photos'));
+        return view('event',compact('data','photos','comments'));
     }
 
     public function hotel(Request $request,$id)
@@ -117,8 +150,9 @@ class SiteController extends Controller
         $phones = MyFunction::get_phones_from_line($data->phones); 
 
         $photos = Photo::where(['type'=>'hotel','data_id'=>$id])->orderBy('is_main', 'desc')->get();
+        $comments = Comment::where(['type'=>'node','data_id'=>$id,'is_check'=>true])->orderBy('created_at','desc')->paginate(10);
 
-        return view('hotel',compact('data','work_times','phones','photos'));
+        return view('hotel',compact('data','work_times','phones','photos','comments'));
     }
 
 
@@ -186,5 +220,21 @@ class SiteController extends Controller
         $text = Text::findOrFail($id);
 
         return view('text',compact('text'));
+    }
+
+    public function page404(Request $request)
+    {
+        $data = SystemText::where('name','404')->first(); 
+
+        return view('system_page',compact('data'));
+    }
+
+    public function how_to_get(Request $request,$type)
+    {
+        $data = SystemText::where('name','how_to_get_'.$type)->first();
+
+        if (!$data) return redirect('/404');
+
+        return view('system_page',compact('data'));
     }
 }

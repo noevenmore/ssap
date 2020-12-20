@@ -137,16 +137,30 @@
                 @include('_comments')
             </div>
             <div class="col-xl-4">
-                <div class="calendar mt-0 mb-5">
-                    <div class="calendar_title">
-                        {{__('Book this tour now')}}
-                    </div>
-                    <div class="calendar_wrapper">
-                        <div class="calendar_button mt-0">
-                            <a href="{{route('excursion_get',['id'=>$data->id])}}" class="button">{{__('Order')}}</a>
-                        </div>
-                    </div>
+
+                <!-- ORDER -->
+                <div id="excursion_order_form_title" class="calendar_title mt-0">
+                    {{__('Book this tour now')}}
                 </div>
+                <form id="excursion_order_form" onsubmit="return leaveExcursionOrder();" class="formMain mb-5">
+
+                    <input id="excursion_order_id" name="id" value="{{$data->id}}" hidden>
+                    <input id="excursion_order_name" type="text" minlength="2" maxlength="127" class="formMain_input" placeholder="{{__('Your name')}}">
+                    <input id="excursion_order_email" type="email" maxlength="127" class="formMain_input" placeholder="{{__('Your E-mail')}}">
+                    <input id="excursion_order_phone" type="text" minlength="4" maxlength="63" class="formMain_input" placeholder="{{__('Your phone number')}}">
+                    <input id="excursion_order_pcount" type="number" minlength="1" min="1" class="formMain_input" placeholder="{{__('People count')}}">
+                    <input id="excursion_order_date" type="text" minlength="2" maxlength="63" class="formMain_input" placeholder="{{__('Date')}}">
+
+                    <button class="formMain_button">
+                        {{__('Order')}}
+                    </button>
+                </form>
+
+                <form id="excursion_order_form_done" class="formMain mb-5" style="display: none;">
+                    <div class="formMain_title mb-0" style="text-align: center;">
+                        {{__('Done!')}}
+                    </div>
+                </form>
 
                 @include('_leave_comment',['id'=>$data->id,'type'=>'excursion'])
             </div>

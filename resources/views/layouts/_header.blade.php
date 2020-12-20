@@ -6,6 +6,7 @@
         <nav class="header_nav nav showoverflow">
             <ul class="header_menu">
 
+                @isset($menu_items)
                 @foreach ($menu_items as $mi)
                     <div class="m-auto dropdown">
                         <a href="
@@ -23,6 +24,7 @@
                         @endif
                     </div>
                 @endforeach
+                @endisset
             </ul>
         </nav>
         <div class="header_search">
@@ -34,7 +36,7 @@
                 </a>
                 <div class="dropdown-content">
                     <form action="{{route('search')}}">
-                        <input class="searchline" type="text" placeholder="{{__('Search on the site')}}">
+                        <input class="searchline" name="t" type="text" placeholder="{{__('Search on the site')}}">
                     </form>
                   </div>
             </div>

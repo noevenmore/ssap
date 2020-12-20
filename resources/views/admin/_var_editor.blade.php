@@ -1,12 +1,15 @@
 @extends('admin.app')
-@section('title','Добавление события')
+@section('title','Редактор значений')
 
 @section('content')
 
-
-
 <form action="{{route('admin_var_editor_update_post')}}" method="POST">
     @csrf
+
+    <div class="form-group">
+        <label><strong>Почта:</strong></label>
+        <input type="text" name="email" class="form-control" placeholder="Введите значение..." value="{{isset($email)?$email:''}}">
+    </div>
 
     <div class="form-group">
         <label><strong>Facebook:</strong></label>
@@ -27,9 +30,5 @@
 
     <button class="btn btn-primary mt-3" type="submit">Сохранить</button>
 </form>
-
-
-
-
 
 @endsection

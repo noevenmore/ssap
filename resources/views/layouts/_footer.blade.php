@@ -25,7 +25,7 @@
         </div>
     </div>
 </section>
-
+@isset($system_var_weather_day0)
 <section class="section section_info">
     <div class="container">
         <div class="row">
@@ -95,6 +95,7 @@
         </div>
     </div>
 </section>
+@endisset
 <footer class="footer">
     <div class="container">
         <div class="row">
@@ -107,7 +108,8 @@
 
 
 
-            @foreach ($menu_items as $mi)
+        @isset($menu_items)
+        @foreach ($menu_items as $mi)
             <div class="col-xl-2 col-lg-3 col-md-4">
                 <div class="footer_title">
                     <a href="
@@ -124,6 +126,15 @@
                 @endif
             </div>
         @endforeach
+        @endisset
+
+        @isset($system_var_email)
+            <ul>
+                <li class="mail">{{__('Contact us')}}
+                    <a>{{$system_var_email}}</a>
+                </li>
+            </ul>
+        @endisset
 
         </div>
     </div>

@@ -1,0 +1,71 @@
+@extends('layouts.app')
+
+@section('title',$system_var_lang=="ua"?'sadj':'sdsd')
+
+@section('content')
+@include('layouts._header')
+
+<div id="breadcrumbs" class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumb">
+                <a href="/" class="main">{{__('Main page')}}</a>/<a href="{{route('search')}}" class="haschild">{{__('Search on the site')}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section section_gallery section_page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section_title">
+                    {{__('Search on the site')}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container gallery gallery--hotel">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-12">
+                <div class="gallery_filter">
+                    <div class="gallery_title">
+                        {{__('Filters')}}
+                    </div>
+                    <div class="gallery_year gallery_year--hotel">
+                        <a href="{{route('search',['t'=>$text])}}">{{__('New ones first')}}</a>
+                        <a href="{{route('node_list',['t'=>$text,'filter'=>'old'])}}">{{__('At first old')}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12">
+                <div class="row">
+                    <!-- ELEMENTS -->
+                    @foreach ($data as $d)
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                        <div class="gallery_img">
+                            <img src="{{$d->image!==null?'/upload/images/'.$d->image->src:'/img/no-images.png'}}" alt="">
+                            <div class="gallery_views">
+                                <a href="{{route('node',$d->id)}}"><span>{{__('Review')}}</span></a>
+                                <div class="br"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="adress">
+                            <div class="adress_title">
+                                {{$system_var_lang=="ua"?$d->name:$d->name_eng}}
+                            </div>
+                        </div>
+                        
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--@ include('pagination')-->
+</section>
+
+@include('layouts._footer')
+@endsection

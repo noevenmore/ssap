@@ -11,9 +11,9 @@ class CommentController extends Controller
     {
         $request->validate([
             'id'=>'required|integer|min:0',
-            'type'=>'required|string',
-            'name'=>'required|string|min:2',
-            'email'=>'required|email',
+            'type'=>'required|string|max:63',
+            'name'=>'required|string|min:2|max:127',
+            'email'=>'required|email|max:127',
             'text'=>'required|string|min:4'
         ]);
 

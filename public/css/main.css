@@ -63,3 +63,8 @@
 {
     z-index: 100 !important;
 }
+
+.cp0
+{
+    cursor: pointer;
+}

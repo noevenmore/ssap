@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Photo;
 use App\Models\Excursion;
 use App\Models\ExcursionFilter;
+use App\Http\Controllers\SearchController;
 
 class ExcursionController extends Controller
 {
@@ -80,6 +81,7 @@ class ExcursionController extends Controller
         $event->save();
 
         PhotoController::publish_images($event->id,'excursion');
+        SearchController::DoSave('excursion',$event);
     }
 
     public function event_add(Request $request)
@@ -156,6 +158,7 @@ class ExcursionController extends Controller
         }
 
         PhotoController::delete_images_with_type_and_id('excursion',$event_id);
+        SearchController::DoDelete('excursion',$data);
 
         $data->delete();
 
