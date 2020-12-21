@@ -1,4 +1,5 @@
-<a href="{{route('event',$item->id)}}">
+<a href="{{route('event',['id'=>$item->id,'slug'=>$item->slug])}}">
+
 <div class="allevent_cart">
     <div class="allevent_img">
         @if (count($item->images)>0)

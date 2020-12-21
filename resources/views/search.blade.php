@@ -70,19 +70,19 @@
                                 switch($d->type)
                                 {
                                     case 'node':
-                                    echo route('node',$d->id);
+                                    echo route('node',['id'=>$d->id,'slug'=>$d->slug]);
                                     break;
 
                                     case 'excursion':
-                                    echo route('excursion',$d->id);
+                                    echo route('excursion',['id'=>$d->id,'slug'=>$d->slug]);
                                     break;
 
                                     case 'event':
-                                    echo route('event',$d->id);
+                                    echo route('event',['id'=>$d->id,'slug'=>$d->slug]);
                                     break;
 
                                     case 'text':
-                                    echo route('show_text',$d->id);
+                                    echo route('show_text',['id'=>$d->id,'slug'=>$d->slug]);
                                     break;
 
                                     default:

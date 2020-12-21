@@ -18,6 +18,8 @@ use App\Models\System;
 use App\Models\SystemText;
 use App\Models\Text;
 
+use Illuminate\Support\Str;
+
 class SiteController extends Controller
 {
     public function index(Request $request)
@@ -148,11 +150,15 @@ class SiteController extends Controller
 
         $work_times = MyFunction::work_days_to_string($data->work_times);
         $phones = MyFunction::get_phones_from_line($data->phones); 
-
         $photos = Photo::where(['type'=>'hotel','data_id'=>$id])->orderBy('is_main', 'desc')->get();
+        
+        if ($data->filter)
+        $filter_info = Filter::where(['category_link'=>$data->type,'value'=>$data->filter])->first();
+        else $filter_info = null;
+
         $comments = Comment::where(['type'=>'node','data_id'=>$id,'is_check'=>true])->orderBy('created_at','desc')->paginate(10);
 
-        return view('hotel',compact('data','work_times','phones','photos','comments'));
+        return view('hotel',compact('data','work_times','phones','photos','comments','filter_info'));
     }
 
 
@@ -185,6 +191,17 @@ class SiteController extends Controller
         {
             $data = Hotel::where(['type'=>$type,'filter'=>$filter])->with('image')->paginate(12);
             $data->appends(['type'=>$type,'filter'=>$filter]);
+
+            
+            if (count($data->items())==1)
+            {
+                $filter_info = Filter::where(['category_link'=>$type,'value'=>$filter])->first();
+
+                if ($filter_info && $filter_info->is_redirect_one)
+                {
+                    return redirect(route('node',['id'=>$data[0]->id,'slug'=>$data[0]->slug]));
+                }
+            }
         } else
         {
             $data = Hotel::where('type',$type)->with('image')->paginate(12);

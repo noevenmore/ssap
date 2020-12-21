@@ -31,6 +31,18 @@ class FilterController extends Controller
         $event->is_show=$request->input('is_show');
         if ($event->is_show==null) $event->is_show=false;
 
+        $event->is_redirect_one=$request->input('is_redirect_one');
+        if ($event->is_redirect_one==null) $event->is_redirect_one=false;
+
+        $event->is_show_phones=$request->input('is_show_phones');
+        if ($event->is_show_phones==null) $event->is_show_phones=false;
+
+        $event->is_show_worktimes=$request->input('is_show_worktimes');
+        if ($event->is_show_worktimes==null) $event->is_show_worktimes=false;
+
+        $event->is_can_comment=$request->input('is_can_comment');
+        if ($event->is_can_comment==null) $event->is_can_comment=false;
+
         $event->save();
     }
 

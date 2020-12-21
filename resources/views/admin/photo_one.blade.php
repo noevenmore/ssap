@@ -6,6 +6,7 @@
 
 <div class="row">
     <div class="col-12 text-center">
+
         <img class="img-fluid" src="/upload/images/{{$photo->src}}" alt="/upload/images/{{$photo->src}}">
     </div>
 </div>
@@ -44,6 +45,21 @@
 
     <div class="text-center">
         <button class="btn btn-primary mt-2" type="submit">Сохранить</button>
+    </div>
+
+    <div class="form-check">
+        <label><strong>Тип прикрепленного события:</strong></label>
+        <input class="form-control" value="{{$photo->type}}" readonly>
+    </div>
+
+    <div class="form-check">
+        <label><strong>ID прикрепленного события:</strong></label>
+        <input class="form-control" value="{{$photo->data_id}}" readonly>
+    </div>
+
+    <div class="form-check">
+        <label><strong>Тэг:</strong></label>
+        <input class="form-control" value="{{$photo->tag}}" readonly>
     </div>
 </form>
 

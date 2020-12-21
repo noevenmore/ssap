@@ -14,7 +14,11 @@ class SearchController extends Controller
     // d - model of hotel or excursion or event
     public static function DoSave($type,$d)
     {
-        $sm = Search::firstOrCreate(['type'=>$type,'data_id'=>$d->id]);
+        //$sm = Search::firstOrCreate(['type'=>$type,'data_id'=>$d->id]);
+        $sm = Search::where(['type'=>$type,'data_id'=>$d->id])->first();
+
+        if (!$sm) $sm = new Search;
+
         $sm->type = $type;
         $sm->data_id = $d->id;
         $sm->name = $d->name;

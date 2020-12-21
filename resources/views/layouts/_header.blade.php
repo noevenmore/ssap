@@ -9,9 +9,14 @@
                 @isset($menu_items)
                 @foreach ($menu_items as $mi)
                     <div class="m-auto dropdown">
-                        <a href="
+                        
+                        <a
+                        @if ($mi->link_type)
+                        href="
                         @include('layouts._link',['obj'=>$mi])
-                        " class="dropbtn">{{ $system_var_lang=="ua"?$mi->name:$mi->name_eng }}</a>
+                        "
+                        @endif
+                        class="dropbtn">{{ $system_var_lang=="ua"?$mi->name:$mi->name_eng }}</a>
 
                         @if (count($mi->childrens))
                             <div class="dropdown-content">

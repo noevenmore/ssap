@@ -59,6 +59,8 @@ class HotelController extends Controller
 
         $hotel->work_times=MyFunction::work_days_from_request($request);
 
+        $hotel->slug = str_slug($hotel->name);
+
         $hotel->save();
 
         PhotoController::publish_images($hotel->id,'hotel');

@@ -78,6 +78,8 @@ class ExcursionController extends Controller
         
         $event->work_times=MyFunction::work_days_from_request($request);
 
+        $event->slug = str_slug($event->name);
+
         $event->save();
 
         PhotoController::publish_images($event->id,'excursion');

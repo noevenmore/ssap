@@ -104,7 +104,7 @@
                     <div class="publication_cart">
                         
                         <div class="excursion_img">
-                            <a href="{{route('excursion',$d->id)}}">
+                            <a href="{{route('excursion',['id'=>$d->id,'slug'=>$d->slug])}}">
                             <img src="{{$d->image!==null?'/upload/images/'.$d->image->src:'/img/no-images.png'}}" alt="">
                         </a>
                             

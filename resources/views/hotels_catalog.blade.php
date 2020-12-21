@@ -51,7 +51,7 @@
                         <div class="gallery_img">
                             <img src="{{$d->image!==null?'/upload/images/'.$d->image->src:'/img/no-images.png'}}" alt="">
                             <div class="gallery_views">
-                                <a href="{{route('node',$d->id)}}"><span>{{__('Review')}}</span></a>
+                                <a href="{{route('node',['id'=>$d->id,'slug'=>$d->slug])}}"><span>{{__('Review')}}</span></a>
                                 <div class="br"></div>
                             </div>
                         </div>

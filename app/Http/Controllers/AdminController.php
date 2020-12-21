@@ -11,8 +11,10 @@ use App\Models\Excursion;
 use App\Models\ExcursionRequest;
 use App\Mail\UserEmailMailable;
 use App\Models\Filter;
+use App\Models\Hotel;
 use App\Models\System;
 use App\Models\SystemText;
+use App\Models\Text;
 use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
@@ -174,4 +176,37 @@ class AdminController extends Controller
         return redirect(route('admin_orders_show'));
     }
 
+    public function recalculate_slugs(Request $request)
+    {
+        $events = Event::cursor();
+        foreach ($events as $d)
+        {
+            $d->slug = str_slug($d->name);
+            $d->save();
+        }
+
+
+        $hotels = Hotel::cursor();
+        foreach ($hotels as $d)
+        {
+            $d->slug = str_slug($d->name);
+            $d->save();
+        }
+
+        $excursions = Excursion::cursor();
+        foreach ($excursions as $d)
+        {
+            $d->slug = str_slug($d->name);
+            $d->save();
+        }
+
+        $texts = Text::cursor();
+        foreach ($texts as $d)
+        {
+            $d->slug = str_slug($d->name);
+            $d->save();
+        }
+
+        return 'done';
+    }
 }

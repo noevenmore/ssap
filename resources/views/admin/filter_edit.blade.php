@@ -9,6 +9,10 @@
         'name'=>$data->name,
         'name_eng'=>$data->name_eng,
         'value'=>$data->value,
-        'is_show'=>$data->is_show
+        'is_show'=>$data->is_show,
+        'is_redirect_one'=>$data->is_redirect_one,
+        'is_show_phones'=>$data->is_show_phones,
+        'is_show_worktimes'=>$data->is_show_worktimes,
+        'is_can_comment'=>$data->is_can_comment,
         ])
 @endsection

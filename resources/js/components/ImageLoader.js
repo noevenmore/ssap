@@ -300,5 +300,10 @@ $.each($('#imageloader'), function(index, element){
     var param_type = $(element).data('type');
     var param_tag = $(element).data('tag');
 
+    if (param_tag === undefined)
+    {
+        param_tag = '';
+    }
+
     ReactDOM.render(<ImageLoader list={image_list} type={param_type} tag={param_tag}/>, element);
 });

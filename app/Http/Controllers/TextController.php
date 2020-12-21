@@ -28,6 +28,8 @@ class TextController extends Controller
         $event->text_eng=$request->input('text_eng','');
         if (!$event->text_eng) $event->text_eng = '';
 
+        $event->slug = str_slug($event->name);
+
         $event->save();
 
         SearchController::DoSave('text',$event);

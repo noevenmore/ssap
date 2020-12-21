@@ -61,6 +61,8 @@ class EventController extends Controller
         }
 
 
+        $event->slug = str_slug($event->name);
+
         $event->save();
 
         PhotoController::publish_images($event->id,'event');

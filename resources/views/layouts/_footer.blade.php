@@ -112,9 +112,13 @@
         @foreach ($menu_items as $mi)
             <div class="col-xl-2 col-lg-3 col-md-4">
                 <div class="footer_title">
-                    <a href="
+                    <a
+                    @if ($mi->link_type)
+                    href="
                         @include('layouts._link',['obj'=>$mi])
-                    ">{{ $system_var_lang=="ua"?$mi->name:$mi->name_eng }}</a>
+                    "
+                    @endif
+                    >{{ $system_var_lang=="ua"?$mi->name:$mi->name_eng }}</a>
                 </div>
 
                 @if (count($mi->childrens))

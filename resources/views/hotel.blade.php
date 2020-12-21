@@ -67,10 +67,19 @@
         @endif
 
     </div>
+
+    @php
+    $is_can_comment = true;
+    if (isset($filter_info) && $filter_info && !$filter_info->is_can_comment) $is_can_comment = false;
+    @endphp
+
     <div class="container">
         <div class="row">
+            @if ($is_can_comment)
             <div class="col-xl-8">
-
+            @else
+            <div class="col-xl-12">
+            @endif
                 @if ($data->is_show_ex_param)
                 <div class="infoBlock">
                     <div class="infoBlock_wrapp">
@@ -85,6 +94,10 @@
                                 <span>{{$system_var_lang=="ua"?$data->addr:$data->addr_eng}}</span>
                             </div>
                         </div>
+
+                        @if (isset($filter_info) && $filter_info && !$filter_info->is_show_phones)
+
+                        @else
                         <div class="infoBlock_telephone infoBlock_item">
                             <div class="infoBlock_img">
                                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,6 +119,11 @@
                                 @endforeach
                             </div>
                         </div>
+                        @endif
+
+                        @if (isset($filter_info) && $filter_info && !$filter_info->is_show_worktimes)
+
+                        @else
                         <div class="infoBlock_work infoBlock_item">
                             <div class="infoBlock_img">
                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,6 +138,7 @@
                                 @endforeach
                             </div>
                         </div>
+                        @endif
                     </div>
                     <div class="infoBlock_link">
                         <a href="{{$data->blink}}">{{__('Link on booking.com')}}</a>
@@ -134,9 +153,11 @@
 
                 @include('_comments')
             </div>
+            @if ($is_can_comment)
             <div class="col-xl-4">
                 @include('_leave_comment',['id'=>$data->id,'type'=>'node'])
             </div>
+            @endif
         </div>
     </div>
 

@@ -34,6 +34,25 @@
         <label class="form-check-label">Показывать фильтр пользователю</label>
     </div>
 
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" name="is_show_phones" {{isset($is_show_phones)&&!$is_show_phones?'':'checked'}}>
+        <label class="form-check-label">Показывать телефоны</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" name="is_show_worktimes" {{isset($is_show_worktimes)&&!$is_show_worktimes?'':'checked'}}>
+        <label class="form-check-label">Показывать время работы</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" name="is_can_comment" {{isset($is_can_comment)&&!$is_can_comment?'':'checked'}}>
+        <label class="form-check-label">Можно оставлять комментарии</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" name="is_redirect_one" {{isset($is_redirect_one)&&!$is_redirect_one?'':'checked'}}>
+        <label class="form-check-label">Переходить сразу к ноду если кроме него ничего нет</label>
+    </div>
 
     <button class="btn btn-primary mt-3" type="submit">OK</button>
 </form>

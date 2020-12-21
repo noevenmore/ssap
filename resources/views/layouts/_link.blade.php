@@ -22,7 +22,7 @@
         break;
 
         case 'text':
-        echo route('show_text',$obj->text_id);
+        echo route('show_text',['id'=>$obj->text_id,'slug'=>str_slug($obj->name)]);
         break;
 
         case 'gallery':

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin_index');
     Route::get('/search-recalculate',[App\Http\Controllers\SearchController::class, 'Recalculate'])->name('search-recalculate');
+    Route::get('/slug-recalculate',[App\Http\Controllers\AdminController::class, 'recalculate_slugs'])->name('slug-recalculate');
 
     Route::get('/var_editor', [App\Http\Controllers\SystemController::class, 'var_editor_show'])->name('admin_var_editor_show');
     Route::post('/var_editor', [App\Http\Controllers\SystemController::class, 'var_editor_update_post'])->name('admin_var_editor_update_post');
@@ -112,14 +113,14 @@ Route::get('/ua',[App\Http\Controllers\LanguageController::class,'set_ukrainian'
 Route::get('/', [App\Http\Controllers\SiteController::class, 'index'])->name('index');
 Route::get('/search', [App\Http\Controllers\SiteController::class, 'search'])->name('search');
 Route::get('/photogallery', [App\Http\Controllers\SiteController::class, 'photogallery'])->name('photogallery');
-Route::get('/excursion/{id}', [App\Http\Controllers\SiteController::class, 'excursion'])->name('excursion');
+Route::get('/excursion/{id}/{slug?}', [App\Http\Controllers\SiteController::class, 'excursion'])->name('excursion');
 Route::get('/excursion_list', [App\Http\Controllers\SiteController::class, 'excursion_list'])->name('excursion_list');
-Route::get('/node/{id}', [App\Http\Controllers\SiteController::class, 'hotel'])->name('node');
+Route::get('/node/{id}/{slug?}', [App\Http\Controllers\SiteController::class, 'hotel'])->name('node');
 Route::get('/node_list', [App\Http\Controllers\SiteController::class, 'hotel_list'])->name('node_list');
-Route::get('/event/{id}', [App\Http\Controllers\SiteController::class, 'event_full'])->name('event');
+Route::get('/event/{id}/{slug?}', [App\Http\Controllers\SiteController::class, 'event_full'])->name('event');
 Route::get('/event_list', [App\Http\Controllers\SiteController::class, 'event_list'])->name('event_list');
 Route::get('/publishes', [App\Http\Controllers\SiteController::class, 'publishes'])->name('publishes');
-Route::get('/show/{id}',[App\Http\Controllers\SiteController::class, 'show_text'])->name('show_text');
+Route::get('/show/{id}/{slug?}',[App\Http\Controllers\SiteController::class, 'show_text'])->name('show_text');
 Route::post('/subscribe',[App\Http\Controllers\EmailDBController::class,'subscribe'])->name('subscribe');
 Route::post('/unsubscribe',[App\Http\Controllers\EmailDBController::class,'unsubscribe'])->name('unsubscribe');
 Route::post('/comment',[App\Http\Controllers\CommentController::class,'comment'])->name('new_comment');
