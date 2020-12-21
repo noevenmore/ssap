@@ -62,6 +62,7 @@ class SiteController extends Controller
         ->orWhere('text_eng','like','%'.$text.'%');
 
         if ($filter) $data = $data->orderBy('created_at','asc');
+        else $data = $data->orderBy('created_at','desc');
 
         $data = $data->paginate(12);
 
