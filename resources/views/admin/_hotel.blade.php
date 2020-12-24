@@ -14,7 +14,7 @@
         </select>
     </div>
 
-    <div id="filters" class="form-group" style="display: none;">
+    <div id="filters" class="form-group">
         @include('admin._d_filter')
     </div>
 
