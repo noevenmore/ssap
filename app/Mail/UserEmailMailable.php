@@ -11,11 +11,6 @@ class UserEmailMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
     public $message;
     public $id;
     public $email;
@@ -27,11 +22,6 @@ class UserEmailMailable extends Mailable
         $this->email = $addr;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
         return $this->view('mail',['data'=>$this->message,'id'=>$this->id,'email'=>$this->email]);

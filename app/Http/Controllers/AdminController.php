@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminEmailMailable;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Event;
@@ -175,6 +176,12 @@ class AdminController extends Controller
         $data = ExcursionRequest::findOrFail($id);
         $data->is_check=true;
         $data->save();
+
+        $excursion = Excursion::where('id',$data->excursion_id)->first();
+        if ($excursion->admin_email)
+        {
+            Mail::to($excursion->admin_email)->queue(new AdminEmailMailable($excursion,$data));
+        }
 
         return redirect(route('admin_orders_show'));
     }
