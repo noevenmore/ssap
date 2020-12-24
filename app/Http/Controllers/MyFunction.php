@@ -53,7 +53,19 @@ class MyFunction extends Controller
                         }
                     } else
                     {
-                        $tm = ': '.$last_from.'-'.$last_to;
+                        if ($last_from=='00:00' && $last_to=='23:59')
+                        {
+                            if ($lang=="ua")
+                            {
+                                $tm = ': Цілодобово';
+                            } else
+                            {
+                                $tm = ': Round the clock';
+                            }
+                        } else 
+                        {
+                            $tm = ': '.$last_from.'-'.$last_to;
+                        }
                     }
 
                     if ($last_day==$day_num)
