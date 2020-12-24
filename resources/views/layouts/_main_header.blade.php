@@ -5,6 +5,7 @@
             
             
             @foreach ($main_page_titles as $mpt)
+            @if ($mpt->is_show)
                 <div class="owl-item " style="width: 720px;">
                     <div class="item">
                         <div class="header_offer-wrapp">
@@ -25,6 +26,7 @@
                         </div>
                     </div>
                 </div>
+            @endif
             @endforeach
 
 
