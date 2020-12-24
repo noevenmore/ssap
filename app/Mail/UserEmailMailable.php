@@ -24,6 +24,8 @@ class UserEmailMailable extends Mailable
 
     public function build()
     {
+        $this->message = str_replace('src="/upload/images/','src="'.env('APP_URL').'/upload/images/',$this->message);
+
         return $this->view('mail',['data'=>$this->message,'id'=>$this->id,'email'=>$this->email]);
     }
 }
