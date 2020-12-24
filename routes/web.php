@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 // ADMIN PANEL
 Route::prefix('admin')->group(function () {
+    Route::get('/ex/get-filters',[App\Http\Controllers\FilterController::class, 'get_category_filters'])->name('get_category_filters');
+
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin_index');
     Route::get('/search-recalculate',[App\Http\Controllers\SearchController::class, 'Recalculate'])->name('search-recalculate');
     Route::get('/slug-recalculate',[App\Http\Controllers\AdminController::class, 'recalculate_slugs'])->name('slug-recalculate');

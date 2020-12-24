@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="header_offer-img">
-                            <img src="{{$mpt->image?"/upload/images/".$item->images->src:"/img/no-images.png"}}" alt="">
+                            <img src="{{$mpt->image?"/upload/images/".$mpt->image->src:"/img/no-images.png"}}" alt="">
                         </div>
                     </div>
                 </div>

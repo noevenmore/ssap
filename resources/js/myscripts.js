@@ -55,3 +55,24 @@ $('#ModalDeleteWindow').on('show.bs.modal', function (event) {
         }
     });
 }
+
+window.loadFilters = function()
+{
+    $('#filters').html(null);
+
+    var value = $('#category').val();
+
+    $.ajax({
+        url:"/admin/ex/get-filters",
+        data:{
+            link: value,
+        },
+        method: 'get',
+        success: function (data)
+        {
+            $('#filters').html(data);
+        }
+    });
+
+    
+}

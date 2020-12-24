@@ -98,7 +98,7 @@ class HotelController extends Controller
 
         if (!$data) return redirect(404);
 
-        $filters=Filter::get();
+        $filters=Filter::where('category_link',$data->type)->get();
         $photos=Photo::where(['type'=>'hotel','data_id'=>$id])->get();
 
         $images_list = '';

@@ -108,4 +108,13 @@ class FilterController extends Controller
 
         return json_encode(['success'=>true]);
     }
+
+    public function get_category_filters(Request $request)
+    {
+        $link = $request->input('link');
+
+        $filters=Filter::where('category_link',$link)->get();
+
+        return view('admin._d_filter',compact('filters'));
+    }
 }

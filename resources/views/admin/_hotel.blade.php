@@ -3,9 +3,9 @@
 
     <input type="text" name="id" value="{{isset($id)?$id:0}}" hidden>
      
-    <div class="form-group">
+    <div class="form-group" onchange="loadFilters()">
         <label><strong>Категория:</strong></label>
-        <select class="form-control" name="type">
+        <select id="category" class="form-control" name="type">
             <option value="">Не выбрано</option>
 
             @foreach ($categorys as $c)
@@ -14,15 +14,8 @@
         </select>
     </div>
 
-    <div class="form-group">
-        <label><strong>Фильтр:</strong></label>
-        <select class="form-control" name="filter">
-            <option value="">Не выбрано</option>
-
-            @foreach ($filters as $c)
-                <option value="{{$c->value}}" {{isset($filter)&&$filter==$c->value?'selected':''}}>{{$c->name}}</option>
-            @endforeach
-        </select>
+    <div id="filters" class="form-group" style="display: none;">
+        @include('admin._d_filter')
     </div>
 
     <div class="form-group">
