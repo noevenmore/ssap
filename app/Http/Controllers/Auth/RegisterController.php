@@ -26,17 +26,23 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'secret_key' => ['required','string','in:Hx03Klx66QmPK0'],
         ]);
     }
 
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'type'=>'admin'
+            'type'=>'user'
         ]);
+
+        if (isset($data['secret_key']) && $data['secret_key']==env('ADMIN_REGISTER_KEY'))
+        {
+            $user->type = 'admin';
+        }
+
+        return $user;
     }
 }

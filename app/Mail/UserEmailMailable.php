@@ -17,9 +17,14 @@ class UserEmailMailable extends Mailable
      * @return void
      */
     public $message;
-    public function __construct( $message)
+    public $id;
+    public $email;
+
+    public function __construct( $message,$id,$addr)
     {
         $this->message = $message;
+        $this->id = $id;
+        $this->email = $addr;
     }
 
     /**
@@ -29,6 +34,6 @@ class UserEmailMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('mail',['data'=>$this->message]);
+        return $this->view('mail',['data'=>$this->message,'id'=>$this->id,'email'=>$this->email]);
     }
 }

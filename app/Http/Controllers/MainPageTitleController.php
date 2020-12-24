@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MainPageTitle;
+use App\Http\Controllers\PhotoController;
+use App\Models\Photo;
 
 class MainPageTitleController extends Controller
 {
@@ -39,12 +41,25 @@ class MainPageTitleController extends Controller
         $event->text_eng=$request->input('text_eng','');
         if (!$event->text_eng) $event->text_eng = '';
 
+        $event->is_show=$request->input('is_show');
+        if ($event->is_show==null) $event->is_show=false;
+
         $event->save();
+
+        PhotoController::publish_images($event->id,'main_title');
     }
 
     public function event_add(Request $request)
     {
-        return view('admin.mp_title_add');
+        $photos=Photo::where(['type'=>'main_title','data_id'=>0])->get();
+
+        $images_list = '';
+        foreach ($photos as $ph)
+        {
+            $images_list = $images_list . $ph->src . ';';
+        }
+
+        return view('admin.mp_title_add',compact('images_list'));
     }
 
     public function event_add_post(Request $request)
@@ -62,7 +77,15 @@ class MainPageTitleController extends Controller
 
         if (!$data) return redirect(404);
 
-        return view('admin.mp_title_edit',compact('data'));
+        $photos=Photo::where(['type'=>'main_title','data_id'=>$id])->get();
+
+        $images_list = '';
+        foreach ($photos as $ph)
+        {
+            $images_list = $images_list . $ph->src . ';';
+        }
+
+        return view('admin.mp_title_edit',compact('data','images_list'));
     }
 
     public function event_edit_post(Request $request)
@@ -97,6 +120,7 @@ class MainPageTitleController extends Controller
             return json_encode(['success'=>false,'message'=>'cant found mp_title with id '.$event_id]);
         }
 
+        PhotoController::delete_images_with_type_and_id('main_title',$event_id);
         $data->delete();
 
         return json_encode(['success'=>true]);

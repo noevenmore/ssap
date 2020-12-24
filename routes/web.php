@@ -7,6 +7,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [App\Http\Controllers\AdminController::class, 'index'])->name('admin_index');
     Route::get('/search-recalculate',[App\Http\Controllers\SearchController::class, 'Recalculate'])->name('search-recalculate');
     Route::get('/slug-recalculate',[App\Http\Controllers\AdminController::class, 'recalculate_slugs'])->name('slug-recalculate');
+    
+    Route::get('/make_fake',[App\Http\Controllers\EmailDBController::class, 'make_fake'])->name('make_fake');
 
     Route::get('/var_editor', [App\Http\Controllers\SystemController::class, 'var_editor_show'])->name('admin_var_editor_show');
     Route::post('/var_editor', [App\Http\Controllers\SystemController::class, 'var_editor_update_post'])->name('admin_var_editor_update_post');
@@ -122,13 +124,17 @@ Route::get('/event_list', [App\Http\Controllers\SiteController::class, 'event_li
 Route::get('/publishes', [App\Http\Controllers\SiteController::class, 'publishes'])->name('publishes');
 Route::get('/show/{id}/{slug?}',[App\Http\Controllers\SiteController::class, 'show_text'])->name('show_text');
 Route::post('/subscribe',[App\Http\Controllers\EmailDBController::class,'subscribe'])->name('subscribe');
-Route::post('/unsubscribe',[App\Http\Controllers\EmailDBController::class,'unsubscribe'])->name('unsubscribe');
+Route::get('/unsubscribe/{id}/{mail}',[App\Http\Controllers\EmailDBController::class,'unsubscribe'])->name('unsubscribe');
 Route::post('/comment',[App\Http\Controllers\CommentController::class,'comment'])->name('new_comment');
 Route::post('/excursion_order',[App\Http\Controllers\ExcursionRequestController::class,'order'])->name('excursion_order');
 
 Auth::routes();
 
+Route::get('/register/new/admin',[App\Http\Controllers\SiteController::class, 'register_new_admin'])->name('register_new_admin');
+
+Route::post('/fav',[App\Http\Controllers\FavoriteController::class,'favorite'])->name('favorite');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout',[App\Http\Controllers\HomeController::class, 'logout_get'])->name('logout_get');
 
 Route::get('/how/{type}',[App\Http\Controllers\SiteController::class, 'how_to_get'])->name('how_to_get');
 Route::fallback([App\Http\Controllers\SiteController::class, 'page404']);

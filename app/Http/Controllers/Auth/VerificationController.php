@@ -10,7 +10,7 @@ class VerificationController extends Controller
 {
     use VerifiesEmails;
 
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/login';
 
     public function __construct()
     {

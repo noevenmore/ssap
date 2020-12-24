@@ -109,8 +109,14 @@
 
 
         @isset($menu_items)
+        <div class="col-xl-2 col-lg-3 col-md-4">
+
+        @php
+            $kk = 0;
+        @endphp
+
         @foreach ($menu_items as $mi)
-            <div class="col-xl-2 col-lg-3 col-md-4">
+            
                 <div class="footer_title">
                     <a
                     @if ($mi->link_type)
@@ -121,15 +127,33 @@
                     >{{ $system_var_lang=="ua"?$mi->name:$mi->name_eng }}</a>
                 </div>
 
+                @php
+                $kk+=1;   
+                @endphp
+
                 @if (count($mi->childrens))
                         @foreach ($mi->childrens as $ch)
+
+                        @php
+                        $kk+=1;   
+                        @endphp
+
                         <p class="m-0"><a href="
                             @include('layouts._link',['obj'=>$ch])
                             ">{{ $system_var_lang=="ua"?$ch->name:$ch->name_eng }}</a></p>
                         @endforeach
                 @endif
-            </div>
+
+                @if ($kk>5)
+                @php
+                $kk=0;   
+                @endphp
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-4">
+                @endif
+            
         @endforeach
+        </div>
         @endisset
 
         @isset($system_var_email)

@@ -24,7 +24,7 @@ class isAdmin
         } else
         {
             if (Auth::check())
-            return redirect(route('home')); else return redirect(route('login'));
+            return redirect(route('index')); else return redirect(route('login'));
         }
     }
 }

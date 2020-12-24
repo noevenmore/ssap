@@ -12,6 +12,8 @@
         'label2'=>$data->label2,
         'label2_eng'=>$data->label2_eng,
         'text'=>$data->text,
-        'text_eng'=>$data->text_eng
+        'text_eng'=>$data->text_eng,
+        'is_show'=>$data->is_show,
+        'tag'=>$data->id,
         ])
 @endsection

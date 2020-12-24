@@ -255,4 +255,9 @@ class SiteController extends Controller
 
         return view('system_page',compact('data'));
     }
+
+    public function register_new_admin(Request $request)
+    {
+        return view('auth.register_admin');
+    }
 }

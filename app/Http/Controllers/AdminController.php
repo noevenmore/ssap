@@ -103,7 +103,10 @@ class AdminController extends Controller
 
         foreach ($db as $d)
         {
-            Mail::to($d->email)->queue(new UserEmailMailable($text));//queue(new UserEmailMailable($text));
+            $id = $d->id;
+            $mail = explode('@',$d->email);
+
+            Mail::to($d->email)->queue(new UserEmailMailable($text,$id,$mail[0]));
         }
 
         return redirect(route('admin_index'));

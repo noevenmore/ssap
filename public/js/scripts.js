@@ -91,3 +91,25 @@ window.leaveExcursionOrder = function()
 
     return false;
 }
+
+window.makeFavorite = function (_type,_photo_id,_data_id)
+{
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+    $.ajax({
+        url: '/fav',
+        data: {
+            type: _type,
+            photo_id: _photo_id,
+            data_id:_data_id
+        },
+        mimeType:'multipart/form-data',
+        type: "post"
+    });
+
+    return false;
+}

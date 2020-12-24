@@ -1,21 +1,65 @@
 @extends('layouts.app')
 
-@section('title','Main page')
+@section('title',__('Favorite'))
 
 @section('content')
 @include('layouts._header')
 
-<div class="container my-5">
+<div id="breadcrumbs" class="container">
     <div class="row">
-        Hello, {{Auth::user()->name}}! You are not admin :)
-
-        <br>
-        <form action="{{route('logout')}}" method="POST">
-            @csrf
-            <button type="submit">{{__('Logout')}}</button>
-        </form>
+        <div class="col-12">
+            <div class="breadcrumb">
+                <a href="/" class="main">{{__('Main page')}}</a>/<a href="{{route('home')}}" class="haschild">{{__('Favorite')}}</a>
+            </div>
+        </div>
     </div>
 </div>
+
+<section class="section section_gallery section_page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section_title">
+                    {{__('Favorite')}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container gallery gallery--hotel">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-12">
+                <div class="gallery_filter">
+                    <div class="gallery_title">
+                        {{__('User panel')}}
+                    </div>
+                    <div class="gallery_year gallery_year--hotel">
+                        <a href="{{route('logout')}}">{{__('Logout')}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12">
+                <div class="row">
+                    <!-- ELEMENTS -->
+                    @foreach ($data as $d)
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                        <div class="gallery_img">
+                            <img src="{{$d->image!==null?'/upload/images/'.$d->image->src:'/img/no-images.png'}}" alt="">
+                            <div class="gallery_views">
+                                <a href="
+                                @include('layouts._fav_link',['item'=>$d])
+                                "><span>{{__('Review')}}</span></a>
+                                <div class="br"></div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @include('pagination')
+</section>
 
 @include('layouts._footer')
 @endsection

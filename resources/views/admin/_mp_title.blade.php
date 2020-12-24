@@ -45,5 +45,15 @@
         <textarea class="form-control" name="text_eng">{{isset($text_eng)?$text_eng:''}}</textarea>
     </div>
 
+    <div class="form-group">
+        <label><strong>Изображение:</strong></label>
+        <div id="imageloader" data-list="{{isset($images_list)?$images_list:""}}" data-type="main_title" data-tag="{{$tag}}"></div>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" name="is_show" {{isset($is_show)&&!$is_show?'':'checked'}}>
+        <label class="form-check-label">Показывать</label>
+    </div>
+
     <button class="btn btn-primary mt-3" type="submit">OK</button>
 </form>

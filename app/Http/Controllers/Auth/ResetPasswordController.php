@@ -10,5 +10,5 @@ class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/login';
 }
