@@ -73,6 +73,9 @@ window.loadFilters = function()
             $('#filters').html(data);
         }
     });
+}
 
-    
+window.toggleMenu = function(id)
+{
+    $('#menu_items_'+id).toggle();
 }
