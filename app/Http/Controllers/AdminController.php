@@ -89,6 +89,19 @@ class AdminController extends Controller
         return redirect(route('admin_index'));
     }
 
+    public function change_main_image(Request $request)
+    {
+        $photos=Photo::where(['type'=>'main_page'])->get();
+
+        $images_list = '';
+        foreach ($photos as $ph)
+        {
+            $images_list = $images_list . $ph->src . ';';
+        }
+
+        return view('admin.change_main_image',compact('images_list'));
+    }
+
     public function mailing(Request $request)
     {
         $count = EmailDB::count();

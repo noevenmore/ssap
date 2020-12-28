@@ -50,6 +50,7 @@
 
 <div onclick="toggleMenu(12)" class="btn btn-sm btn-success w-100 mt-2">Система</div>
 <div id="menu_items_12" class="w-100" style="display: none;">
+    <p class="my-1"><a class="btn btn-sm btn-primary w-100" href="{{route('admin_change_main_image')}}">Редактор изображений на главной</a></p>
     <p class="my-1"><a class="btn btn-sm btn-primary w-100" href="{{route('admin_mp_title_show')}}">Просмотр надписей на главной</a></p>
     <p class="my-1"><a class="btn btn-sm btn-primary w-100" href="{{route('admin_mp_title_add')}}">Добавить надпись на главной</a></p>
     <p class="my-1"><a class="btn btn-sm btn-primary w-100" href="{{route('admin_main_page_link_editor')}}">Редактор ссылок на главной странице</a></p>

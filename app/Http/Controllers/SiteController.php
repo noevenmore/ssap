@@ -39,6 +39,8 @@ class SiteController extends Controller
         $main_page_block = SystemText::where('name','main_page')->first();
         $main_page_photo=Photo::where('type','main')->first();
 
+        $main_page_image=Photo::where('type','main_page')->inRandomOrder()->first();
+
         $mpl0s = System::where('name','main_page_link0')->first();
         if ($mpl0s) $mpl0 = Filter::where('id',$mpl0s->value)->first(); else $mpl0=null;
 
@@ -48,7 +50,7 @@ class SiteController extends Controller
         $mpl2s = System::where('name','main_page_link2')->first();
         if ($mpl2s) $mpl2 = Filter::where('id',$mpl2s->value)->first(); else $mpl2=null;
 
-        return view('welcome',compact('main_page_titles','all_events','events_festivals','events_show','events_concert','events_sport','events_conference','events_other','categorys','excursions','main_page_block','main_page_photo','mpl0','mpl1','mpl2'));
+        return view('welcome',compact('main_page_titles','all_events','events_festivals','events_show','events_concert','events_sport','events_conference','events_other','categorys','excursions','main_page_block','main_page_photo','mpl0','mpl1','mpl2','main_page_image'));
     }
 
     public function search(Request $request)

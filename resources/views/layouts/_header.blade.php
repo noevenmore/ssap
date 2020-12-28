@@ -1,4 +1,9 @@
-<header class="header {{isset($is_main_page)?'':'header--page'}} showoverflow">
+<header class="header {{isset($is_main_page)?'':'header--page'}} showoverflow"
+
+@if (isset($is_main_page) && isset($main_page_image) && $main_page_image)
+style="background-image: url(../upload/images/{{$main_page_image->src}});"
+@endif
+>
     <div class="header_wrapper showoverflow z1000">
         <div class="header_logo">
             <a href="/"><img src="/img/logo.png" alt=""></a>

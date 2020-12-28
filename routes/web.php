@@ -12,6 +12,9 @@ Route::prefix('admin')->group(function () {
     
     Route::get('/make_fake',[App\Http\Controllers\EmailDBController::class, 'make_fake'])->name('make_fake');
 
+
+    Route::get('/change_main_image', [App\Http\Controllers\AdminController::class, 'change_main_image'])->name('admin_change_main_image');
+
     Route::get('/var_editor', [App\Http\Controllers\SystemController::class, 'var_editor_show'])->name('admin_var_editor_show');
     Route::post('/var_editor', [App\Http\Controllers\SystemController::class, 'var_editor_update_post'])->name('admin_var_editor_update_post');
 
