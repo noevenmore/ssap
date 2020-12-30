@@ -3,7 +3,9 @@
     <div class="owl-stage-outer">
         <div class="owl-stage" style="transform: translate3d(-1440px, 0px, 0px); transition: all 0s ease 0s; width: 5040px;">
             
-            
+            @php
+            $slide_id = 0;   
+            @endphp
             @foreach ($main_page_titles as $mpt)
             @if ($mpt->is_show)
                 <div class="owl-item " style="width: 720px;">
@@ -21,8 +23,11 @@
                             </div>
                         </div>
 
-                        <div class="header_offer-img">
-                            <img src="{{$mpt->image?"/upload/images/".$mpt->image->src:"/img/no-images.png"}}" alt="">
+                        <div class="header_offer-img" hidden>
+                            <img class="slide_img_id{{$slide_id}}" src="{{$mpt->image?"/upload/images/".$mpt->image->src:"/img/no-images.png"}}" alt="">
+                            @php
+                            $slide_id++;   
+                            @endphp
                         </div>
                     </div>
                 </div>
