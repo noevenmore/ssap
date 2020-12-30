@@ -1,18 +1,16 @@
 <header class="header {{isset($is_main_page)?'':'header--page'}} showoverflow"
 
-<<<<<<< Updated upstream
-@if (isset($is_main_page) && isset($main_page_image) && $main_page_image)
-style="background-image: url(../upload/images/{{$main_page_image->src}});"
-@endif
-=======
 @isset($is_main_page)
     @isset($main_page_titles[0]->image)
     style="background-image: url({{$main_page_titles[0]->image?"/upload/images/".$main_page_titles[0]->image->src:"/img/no-images.png"}})"
     @else
-    style="background-image: url(/img/no-images.png)"
+        @if (isset($main_page_image) && $main_page_image))
+            style="background-image: url(../upload/images/{{$main_page_image->src}});"
+            @else
+            style="background-image: url(/img/no-images.png)"
+        @endif
     @endisset
 @endisset
->>>>>>> Stashed changes
 >
     <div class="header_wrapper showoverflow z1000">
         <div class="header_logo">
