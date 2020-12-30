@@ -2,7 +2,7 @@
 
 @isset($is_main_page)
     @isset($main_page_titles[0]->image)
-    style="background-image: url({{$main_page_titles[0]->image?"/upload/images/".$main_page_titles[0]->image->src:"/img/no-images.png"}})"
+    style="background-image: url({{"/upload/images/".$main_page_titles[0]->image->src}})"
     @else
         @if (isset($main_page_image) && $main_page_image))
             style="background-image: url(../upload/images/{{$main_page_image->src}});"
