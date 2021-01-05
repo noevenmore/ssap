@@ -18,7 +18,7 @@ class MyFunction extends Controller
         $last_from = -1;
         $last_to = -1;
         $last_day = -1;
-        $days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+        $days = ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'];
         $days_eng = ['Mo','Tu','We','Th','Fr','Sa','Su'];
 
         $work_days.='|99999-99999';

@@ -37,6 +37,9 @@ class FilterController extends Controller
         $event->is_show_phones=$request->input('is_show_phones');
         if ($event->is_show_phones==null) $event->is_show_phones=false;
 
+        $event->is_show_link=$request->input('is_show_link');
+        if ($event->is_show_link==null) $event->is_show_link=false;
+
         $event->is_show_worktimes=$request->input('is_show_worktimes');
         if ($event->is_show_worktimes==null) $event->is_show_worktimes=false;
 

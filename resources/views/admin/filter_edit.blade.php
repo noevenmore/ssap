@@ -13,6 +13,7 @@
         'is_redirect_one'=>$data->is_redirect_one,
         'is_show_phones'=>$data->is_show_phones,
         'is_show_worktimes'=>$data->is_show_worktimes,
+        'is_show_link'=>$data->is_show_link,
         'is_can_comment'=>$data->is_can_comment,
         ])
 @endsection

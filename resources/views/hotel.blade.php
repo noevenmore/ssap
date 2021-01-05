@@ -135,9 +135,11 @@
                         </div>
                         @endif
                     </div>
-                    <div class="infoBlock_link">
-                        <a href="{{$data->blink}}">{{__('Link on booking.com')}}</a>
-                    </div>
+                    @if ($filter_info->is_show_link)
+                        <div class="infoBlock_link">
+                            <a href="{{$data->blink}}">{{__('Link on booking.com')}}</a>
+                        </div>
+                    @endif
                 </div>
                 @endif
 

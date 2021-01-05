@@ -50,6 +50,11 @@
     </div>
 
     <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" name="is_show_link" {{isset($is_show_link)&&!$is_show_link?'':'checked'}}>
+        <label class="form-check-label">Показывать ссылку на booking.com</label>
+    </div>
+
+    <div class="form-check">
         <input class="form-check-input" type="checkbox" value="1" name="is_redirect_one" {{isset($is_redirect_one)&&!$is_redirect_one?'':'checked'}}>
         <label class="form-check-label">Переходить сразу к ноду если кроме него ничего нет</label>
     </div>
