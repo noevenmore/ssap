@@ -41,17 +41,19 @@
                 <div class="row">
                     <!-- ELEMENTS -->
                     @foreach ($data as $d)
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="gallery_img">
-                            <img src="{{$d->image!==null?'/upload/images/'.$d->image->src:'/img/no-images.png'}}" alt="">
-                            <div class="gallery_views">
-                                <a href="
-                                @include('layouts._fav_link',['item'=>$d])
-                                "><span>{{__('Review')}}</span></a>
-                                <div class="br"></div>
+                    @if ($d->image || $d->data_id)
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                            <div class="gallery_img">
+                                <img src="{{$d->image!==null?'/upload/images/'.$d->image->src:'/img/no-images.png'}}" alt="">
+                                <div class="gallery_views">
+                                    <a href="
+                                    @include('layouts._fav_link',['item'=>$d])
+                                    "><span>{{__('Review')}}</span></a>
+                                    <div class="br"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     @endforeach
                 </div>
             </div>
