@@ -52,7 +52,7 @@
                                     <img src="/upload/images/{{$ph->src}}" alt="" >
                                 </a>
 
-                                @include('layouts._fav',['type'=>'photo','data_id'=>0,'photo_id'=>$ph->id])
+                                @include('layouts._fav',['type'=>'hotel','data_id'=>$data->id,'photo_id'=>$ph->id])
                             </div>
                         @endforeach
                     </div>
